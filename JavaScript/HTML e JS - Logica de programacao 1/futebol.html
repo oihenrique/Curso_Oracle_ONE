@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pontos Futebol</title>
+</head>
+<body>
+    
+    <script>
+
+        function pulaLinha() {
+            document.write("<br><br>");
+        }
+
+        function escreva(texto) {
+            document.write(texto);
+            pulaLinha();
+        }
+        
+        // o prompt sempre retorn os resultados como string, parserInt converte para inteiro
+        var vitorias = parseInt(prompt("Quantas vitórias seu time possui? "));
+        
+        var empates = parseInt(prompt("Quantas empates seu time possui? "));
+
+        var pontos = (vitorias * 3) + empates;
+
+        escreva("Os pontos do seu time equivalem a: " + pontos);
+
+        if(pontos > 28) {
+            escreva("Seu time está melhor que no ano passado.");
+        }
+
+        if(pontos < 28) {
+            escreva("Seu time está pior que no ano passado.");
+        }
+
+        if(pontos == 28) {
+            escreva("Seu time está igual estava no ano passado.");
+        }
+    </script>
+
+
+</body>
+</html>

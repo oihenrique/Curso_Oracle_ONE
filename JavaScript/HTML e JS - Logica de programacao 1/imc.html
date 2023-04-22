@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>IMC</title>
+</head>
+<body>
+    
+    <script>
+
+        function pulaLinha() {
+            document.write("<br><br>");
+        }
+
+        function escreva(texto) {
+            document.write(texto);
+            pulaLinha();
+        }
+
+        function calcularIMC(peso, altura) {
+
+            var imc = peso / (altura * altura);
+            return imc // faz a função devolver um resultado que pode ser armazenado em outra variável
+            
+            // return peso / (altura * altura); pode ser assim também
+
+        }
+
+        //var imcMarcos = calcularIMC(73, 1.71);
+        //var imcAmigo = calcularIMC(68, 1.72);
+
+        //escreva(imcMarcos);
+        //escreva(imcAmigo);
+
+        //var totalImc = imcMarcos + imcAmigo
+        //escreva(totalImc)
+
+        var nome = prompt("Qual o seu nome? ");
+        var alturaInformada = prompt(nome, "Informe sua altura: ");
+        var pesoInformado = prompt(nome, "Informe o seu peso: ");
+
+        var imc = calcularIMC(pesoInformado, alturaInformada);
+        escreva(nome + " o seu IMC é: " + imc);
+
+        if(imc < 18.5) {
+            escreva("Você está abaixo do peso recomendado pela OMS.");
+        }
+
+        if(imc > 35) {
+            escreva("Você está acima do peso recomendado pela OMS.");
+        }
+
+        if(imc >= 18.5 && imc <= 35) {
+                escreva("O seu IMC está excelente!");
+        }
+
+    </script>
+
+
+</body>
+</html>

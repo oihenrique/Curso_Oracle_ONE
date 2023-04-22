@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bolinha pulsante</title>
+</head>
+<body>
+    
+    <canvas width="500" height="500"></canvas>
+
+    <script>
+        var tela = document.querySelector('canvas');
+        var pincel = tela.getContext('2d');
+
+        var raio = 20;
+        pulso = 1; // variável fora, se colocar dentro da função ele vai ficar resetando ela e não vai funcionar
+
+        function desenhaCirculo(x, y, raio) {
+
+            pincel.fillStyle = 'orange';
+            pincel.beginPath();
+            pincel.arc(x, y, raio, 0 , 2 * Math.PI);
+            pincel.fill();
+        }
+
+        function limpaTela() {
+            pincel.clearRect(0, 0, 600, 400)
+        }
+
+        function atualizaTela() {
+            limpaTela();
+            desenhaCirculo(250, 250, raio);
+
+            if(pulso == 1) {
+                raio++
+                if(raio == 30) {
+                    pulso = 0;
+                }
+            }
+            
+            if(pulso == 0) {
+                raio--
+                if(raio == 20) {
+                    pulso = 1;
+                }
+            }
+        }
+
+        setInterval(atualizaTela, 30);
+
+    </script>
+    
+</body>
+</html>

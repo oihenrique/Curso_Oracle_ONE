@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da advinhação</title>
+</head>
+<body>
+    
+    <input>
+    <button>Verificar</button>
+
+    <script>
+
+        function verificar() {
+
+            // Comparando o valor do input do HTML com o número gerado
+            if(input.value == numeroGerado) {
+
+                alert("Acertou!");
+                
+            } else {
+
+                alert("Errou =/");
+            }
+
+            // zera o valor do campo input
+            input.value = "";
+            // Seleciona o campo do input automáticamente
+            input.focus();
+        }
+
+        var numeroGerado = Math.round(Math.random() * 10);
+        console.log(numeroGerado);
+
+        // Instanciando a tag input do HTML para a variável input no JS
+        var input = document.querySelector("input");
+        input.focus()
+        
+        // Instanciando a tag button do HTML para a variável button no JS
+        var button = document.querySelector("button");
+
+        button.onclick = verificar;
+
+
+
+    </script>
+
+
+</body>
+</html>

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo advinhação</title>
+</head>
+<body>
+    
+    <script>
+
+        function pulaLinha() {
+            document.write("<br><br>");
+        }
+
+        function escreva(texto) {
+            document.write(texto);
+            pulaLinha();
+        }
+
+        function sorteia(num) {
+            //var number = parseInt(num) % 10;
+            //return (Math.round(Math.random() * number * 10));
+
+            return Math.round(Math.random() * num);
+
+        }
+        
+        var numeroPensado = sorteia(20);
+        console.log(numeroPensado);
+        var chute = parseInt(prompt("Chute um número: "));
+
+        if(numeroPensado == chute) {
+            escreva("Você acertou!");
+        } else {
+            escreva("Você errou, o número pensado foi " + numeroPensado);
+
+            if(numeroPensado > chute){
+                escreva("O numero pensado era maior do que o seu chute =/");
+            } else {
+                escreva("O numero pensado era menor do que o seu chute =/");
+            }
+        }
+
+    </script>
+
+
+</body>
+</html>

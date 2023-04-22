@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jogo da advinhação</title>
+</head>
+<body>
+    
+    <input>
+    <button>Verificar</button>
+
+    <script>
+
+        function sorteia() {
+            
+            return Math.round(Math.random() * 10);
+        }
+
+        function sorteiaNumeros(quantidade) {
+
+            var numerosGerados = [];
+            var contador = 1;
+
+            while(contador <= quantidade) {
+
+                var numeroAleatorio = sorteia();
+
+                if(numeroAleatorio !== 0) {
+
+                    var acertou = false;
+                    // Comparando o valor do input do HTML com o número gerado
+                    for(var pos = 0; pos < numerosGerados.length; pos++) {
+                        
+                        // verificar se o numero já está na lista
+                        if(numerosGerados[pos] == numeroAleatorio) {
+                            acertou = true;
+                            break;                    
+                        }              
+                    }
+
+                    if(acertou == false) {
+                        // push coloca algo dentro de uma array
+                        numerosGerados.push(numeroAleatorio);
+                        contador++;
+                    }
+                }
+            }
+            return numerosGerados;
+        }
+
+
+        function verificar() {
+
+            // Comparando o valor do input do HTML com o número gerado
+            for(var pos = 0; pos < numerosGerados.length; pos++) {
+
+                var acertou = false;
+
+                if(input.value == numerosGerados[pos]) {
+
+                    alert("Acertou!");
+                    acertou = true;
+                    input.value = "";
+                    input.focus()
+                    break;                    
+                }              
+            }
+            
+            // se for falso
+            if(!acertou) {
+                alert("Errou!");
+
+                // zera o valor do campo input
+                input.value = "";
+                // Seleciona o campo do input automáticamente
+                input.focus();
+            }
+        }
+
+        var numerosGerados = sorteiaNumeros(5);
+        console.log(numerosGerados);
+
+
+        // Instanciando a tag input do HTML para a variável input no JS
+        var input = document.querySelector("input");
+        input.focus()
+        
+        // Instanciando a tag button do HTML para a variável button no JS
+        var button = document.querySelector("button");
+
+        button.onclick = verificar;
+
+    </script>
+
+</body>
+</html>

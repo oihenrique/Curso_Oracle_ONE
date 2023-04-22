@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste canvas</title>
+</head>
+<body>
+    
+    <!--Adicionando a área para desenho na tela-->
+    <canvas width="600" height="400"></canvas>
+
+    <script>
+
+        // instanciando a tag canvas na variável tela
+        var tela = document.querySelector("canvas");
+        // definindo como que será feito o desenho na tela
+        var pincel = tela.getContext("2d");
+
+        // define a cor
+        pincel.fillStyle = 'white';
+        // preenche o espaço
+        pincel.fillRect(0, 0, 600, 400);
+
+        pincel.fillStyle = 'green';
+        pincel.fillRect(0, 0, 200, 400);
+
+        pincel.fillStyle = "red";
+        pincel.fillRect(400, 0, 200, 400)
+
+        pincel.fillStyle = "yellow";
+        // Começar o caminho percorrido pelo pincel
+        pincel.beginPath();
+        // mover o pincel para a posição x,y
+        pincel.moveTo(300, 200);
+        // pintar em direção a x,y
+        pincel.lineTo(200, 400);
+        pincel.lineTo(400, 400);
+        // preencher
+        pincel.fill();
+
+        pincel.fillStyle = "blue";
+        pincel.beginPath();
+        // utilizando um arco para criar um circulo
+        pincel.arc(300, 200, 50, 0, 2 * 3.14);
+        pincel.fill()
+
+    </script>
+    
+</body>
+</html>

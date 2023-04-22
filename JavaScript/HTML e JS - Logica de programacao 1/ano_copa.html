@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ano Copa</title>
+</head>
+<body>
+    
+    <script>
+
+        function pulaLinha() {
+            document.write("<br><br>");
+        }
+
+        function escreva(texto) {
+            document.write(texto);
+            pulaLinha();
+        }
+
+        var dataLimite = parseInt(prompt("Digite uma data limite: "));
+        
+        var anoCopa = 1930;
+
+        while(anoCopa <= dataLimite) {
+
+            escreva("Teve copa em " + anoCopa);
+            anoCopa = anoCopa + 4;
+
+        }
+
+        escreva("FIM")
+
+
+    </script>
+
+
+</body>
+</html>

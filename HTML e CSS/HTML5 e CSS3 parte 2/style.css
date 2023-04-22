@@ -1,0 +1,92 @@
+body {
+    background: #FDFDFD;
+	font-family: 'Courier New', Courier, monospace;
+}
+
+header {
+	background-color: #F2BF27;
+	padding: 1% 0;
+}
+
+.caixa {
+	position: relative;
+	width: 940px;
+	margin: 0 auto; /*centralizar a caixa*/
+}
+
+nav {
+	position: absolute;
+	top: 45px;
+	right: 0;
+}
+
+nav li {
+	display: inline-block;
+	margin-left: 15px;
+}
+
+nav a {
+	text-decoration: none;
+	text-transform: uppercase;
+	color: #161616;
+	font-size: 18px;
+	font-weight: bold;
+}
+
+nav a:hover {
+	color: #FDFDFD;
+	text-decoration: underline;
+}
+
+#banner {
+	width: 100%;
+}
+
+.principal h2 {
+	text-align: center;
+	font-size: larger;
+	font-weight: bold;
+	margin: 40px 0;
+}
+
+.principal p {
+	text-align: left;
+	margin: 20px 20% 20px 20%;
+}
+
+.beneficios {
+	box-sizing: border-box;
+	margin-left: 20%;
+	margin-bottom: 2%;
+}
+
+.beneficios h3{
+	text-align: center;
+	font-size: larger;
+	font-weight: bold;
+	margin: 40px 0;
+	margin-left: -20%;
+}
+
+.beneficios ul {
+	display: inline-block;
+	margin-right: 5%;
+	vertical-align: top;
+	line-height: 1.5;
+}
+
+.imagembeneficios {
+	width: 40%;
+}
+
+footer {
+    text-align: center;
+    background-color: #161616;
+    padding: 40px 0;
+}
+
+.copyright {
+    color: #fdfdfd;
+    font-size: 14px;
+    margin-top: 20px;
+}

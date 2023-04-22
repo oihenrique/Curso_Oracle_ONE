@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Brazilian Flag</title>
+</head>
+<body>
+    
+    <canvas width="500", height="300"></canvas>
+
+    <script>
+
+        var tela = document.querySelector("canvas");
+        var pincel = tela.getContext("2d");
+
+        // rectangle
+        pincel.fillStyle = "#009c3b";
+        pincel.fillRect(0, 0, 500, 300);
+
+        // Triangles
+        pincel.fillStyle = "#ffdf00";
+        pincel.beginPath();
+        pincel.moveTo(40, 150);
+        pincel.lineTo(250, 40);
+        pincel.lineTo(460, 150);
+        pincel.fill();
+
+        pincel.beginPath();
+        pincel.moveTo(40, 150);
+        pincel.lineTo(250, 260);
+        pincel.lineTo(460, 150);
+        pincel.fill();
+
+        // Center circle
+        pincel.fillStyle = "darkblue";
+        pincel.beginPath()
+        pincel.arc(250, 150, 75, 0, 2 * 3.14);
+        pincel.fill();
+
+        
+    </script>
+
+</body>
+</html>
