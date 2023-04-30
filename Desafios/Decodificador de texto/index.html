@@ -25,19 +25,18 @@
             </div>
             <div class="button-area">
                 <p>Apenas letras minúsculas e sem acento.</p>
-                <button class="cripto-button">Criptografar</button>
-                <button class="decode-button">Decodificar</button>
+                <button id="cripto-button" onclick="criptografar(document.getElementById('dc-input').value)">Criptografar</button>
+                <button id="decode-button" onclick="descriptografar(texto_criptografado)">Decodificar</button>
             </div>
         </div>
         <div class="campo-resultado">
             <img class="img-404" src="assets/High quality products 1 1.svg" alt="Menino procurando algo com uma lupa na mão.">
-            <p class="resultado-decodificado">teste</p>
+            <p class="resultado-decodificado" id="resultado"></p>
             <div class="not_found">
                 <h3>Nenhuma mensagem encontrada</h3>
                 <p>Digite um texto que você deseja criptografar ou descriptografar.</p>
             </div>
-
-            <button class="copy-button">Copy</button>
+            <button class="copy-button" onclick="copy(document.getElementById('resultado').innerHTML)">Copy</button>
         </div>
     </main>
 </body>
