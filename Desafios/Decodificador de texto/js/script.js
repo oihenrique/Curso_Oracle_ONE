@@ -1,4 +1,3 @@
-var text_area = document.getElementById('dc-input');
 var texto_criptografado = ""
 var texto_descriptografado = ""
 
@@ -42,13 +41,29 @@ function criptografar(texto) {
         campo_resultado[0].style.display = "inline-block";
         img_404[0].style.display = "none";
         not_found[0].style.display = "none";
-        copy_button[0].style.display = "inline-block";
         resultado_decodificado[0].style.display = "inline-block";
         resultado.innerHTML = texto_criptografado;
 
+        if (window.innerWidth > 810) {
+            copy_button[0].style.display = "inline-block";
+        } else {
+            copy_button[0].style.display = "block";
+        }
+
+        if (window.innerWidth < 480) {
+            campo_resultado[0].style.padding = '32px';
+        }
+
     } else {
+        if (window.innerWidth > 810) {
+            img_404[0].style.display = "inline-block";
+        } 
+
+        if (window.innerWidth < 480) {
+            campo_resultado[0].style.padding = '0';
+        }
+
         campo_resultado[0].style.display = "flex";
-        img_404[0].style.display = "inline-block";
         not_found[0].style.display = "inline-block";
         copy_button[0].style.display = "none";
         resultado_decodificado[0].style.display = "none";
@@ -57,6 +72,10 @@ function criptografar(texto) {
 }
 
 function descriptografar(textoCriptografado) {
+    if (textoCriptografado == "") {
+        textoCriptografado = document.getElementById('dc-input').value
+    }
+
     const campo_resultado = document.getElementsByClassName("campo-resultado");
     const img_404 = document.getElementsByClassName("img-404");
     const not_found = document.getElementsByClassName("not_found");
@@ -93,12 +112,29 @@ function descriptografar(textoCriptografado) {
         campo_resultado[0].style.display = "inline-block";
         img_404[0].style.display = "none";
         not_found[0].style.display = "none";
-        copy_button[0].style.display = "inline-block";
         resultado_decodificado[0].style.display = "inline-block";
         resultado.innerHTML = texto_descriptografado;
+
+        if (window.innerWidth > 810) {
+            copy_button[0].style.display = "inline-block";
+        } else {
+            copy_button[0].style.display = "block";
+        }
+
+        if (window.innerWidth < 480) {
+            campo_resultado[0].style.padding = '32px';
+        }
+
     } else {
+        if (window.innerWidth > 810) {
+            img_404[0].style.display = "inline-block";
+        } 
+        
+        if (window.innerWidth < 480) {
+            campo_resultado[0].style.padding = '0';
+        }
+
         campo_resultado[0].style.display = "flex";
-        img_404[0].style.display = "inline-block";
         not_found[0].style.display = "inline-block";
         copy_button[0].style.display = "none";
         resultado_decodificado[0].style.display = "none";
