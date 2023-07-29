@@ -8,8 +8,8 @@ public class CotacaoMoedas {
     private final double pesoChileno;
 
     public CotacaoMoedas() {
-        dolar = 4.75;
-        euro = 5.25;
+        dolar = 4.73;
+        euro = 5.22;
         libraEsterlina = 6.12;
         pesoArgentino = 0.017;
         pesoChileno = 0.0057;

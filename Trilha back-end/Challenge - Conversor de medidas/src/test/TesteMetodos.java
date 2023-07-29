@@ -8,8 +8,8 @@ public class TesteMetodos {
         ConversorDeMedidas conversor = new ConversorDeMedidas();
         CotacaoMoedas cotacao = new CotacaoMoedas();
 
-        System.out.println(conversor.converterDeRealPara(cotacao.getDolar(), 200));
-        System.out.println(conversor.converterParaReal(cotacao.getDolar(), 200));
+        //System.out.println(conversor.converterDeRealPara(cotacao.getDolar(), 200));
+        //System.out.println(conversor.converterParaReal(cotacao.getDolar(), 200));
 
     }
 }

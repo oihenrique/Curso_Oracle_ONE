@@ -1,7 +1,9 @@
 package main.conversor;
 
-import main.util.CotacaoMoedas;
-
 public class Main {
 
+    public static void main(String[] args) {
+
+        ConversorUI ui = new ConversorUI();
+    }
 }
