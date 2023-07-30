@@ -1,13 +1,12 @@
 package main.conversor;
 
-import main.util.UtilMethods;
-
-public class Exceptions extends Exception {
-    UtilMethods util = new UtilMethods();
+public class Exceptions extends RuntimeException {
     UIComponents components = new UIComponents();
 
-    public void InvalidArgumentException(Object valor) {
-        util.verificarDoubleInput(valor);
+    /**
+     * Exibe uma janela com uma mensagem de erro de valor.
+     */
+    public void InvalidArgumentException() {
         components.exibirMensagemErro("Valor inválido, digite apenas números.");
     }
 }

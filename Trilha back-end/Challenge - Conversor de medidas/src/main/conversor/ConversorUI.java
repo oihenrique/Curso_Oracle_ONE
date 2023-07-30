@@ -28,6 +28,9 @@ public class ConversorUI {
         new MoneyConversor();
     }
 
+    /**
+     * O método getTemperaturConversor retorna uma instância da classe TemperatureConversor. Ao chamar esse método, o construtor da classe TemperatureConversor é executado automaticamente, criando as interfaces do conversor de temperaturas.
+     */
     public void getTemperatureConversor() {
         new TemperatureConversor();
     }

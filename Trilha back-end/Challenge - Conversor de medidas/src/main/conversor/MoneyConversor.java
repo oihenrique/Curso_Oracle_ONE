@@ -35,7 +35,7 @@ public class MoneyConversor {
         try {
             moedaParaConverter = components.exibirDoubleInput("Conversor de moedas");
         } catch (NumberFormatException exception) {
-            exceptions.InvalidArgumentException(moedaParaConverter);
+            exceptions.InvalidArgumentException();
             moedaParaConverter = components.exibirDoubleInput("Conversor de moedas");
         }
 

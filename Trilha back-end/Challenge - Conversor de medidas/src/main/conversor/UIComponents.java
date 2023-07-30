@@ -54,10 +54,18 @@ public class UIComponents {
         return escolha == 0;
     }
 
+    /**
+     * Exibe uma janela com uma mensagem de erro.
+     *
+     * @param errorText mensagem de erro exibida na janela.
+     */
     public void exibirMensagemErro(String errorText) {
         JOptionPane.showMessageDialog(null, errorText, "Erro", JOptionPane.ERROR_MESSAGE);
     }
 
+    /**
+     * Exibe uma janela com uma mensagem indicativa de finalização do programa.
+     */
     public void exibirMensagemSaida(){
         JOptionPane.showMessageDialog(null, "Programa finalizado.", "Conversor", JOptionPane.INFORMATION_MESSAGE);
     }

@@ -24,7 +24,7 @@ public class TemperatureConversor {
         try {
             valorTemperatura = components.exibirDoubleInput("Conversor de temperaturas");
         } catch (NumberFormatException exception) {
-            exceptions.InvalidArgumentException(valorTemperatura);
+            exceptions.InvalidArgumentException();
             valorTemperatura = components.exibirDoubleInput("Conversor de temperaturas");
         }
 

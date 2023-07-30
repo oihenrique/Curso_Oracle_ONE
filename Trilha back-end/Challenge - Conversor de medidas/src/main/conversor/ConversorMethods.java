@@ -1,7 +1,7 @@
 package main.conversor;
 
 /**
- * A classe ConversorMethods contém métodos para realização de cálculos de conversão entre unidades de moeda e de temperaturas.
+ * A classe ConversorMethods contém métodos para realização de cálculos de conversão entre unidades de moeda, como para converter unidades de temperaturas.
  *
  * @author Henrique Gomes.
  */
