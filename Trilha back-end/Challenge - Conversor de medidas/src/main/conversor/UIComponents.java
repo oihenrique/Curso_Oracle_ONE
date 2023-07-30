@@ -45,8 +45,20 @@ public class UIComponents {
      * @return true se "sim", false se "não".
      */
     public boolean exibirConfirmacaoSaida(){
-        Integer escolha = Integer.parseInt(String.valueOf(JOptionPane.showOptionDialog(null, "Deseja continuar?", "Menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] {"sim", "não"},"")));
+        int escolha = Integer.parseInt(String.valueOf(JOptionPane.showOptionDialog(null, "Deseja continuar?", "Menu", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE, null, new Object[] {"sim", "não"},"")));
+
+        if (escolha == 1) {
+            exibirMensagemSaida();
+        }
 
         return escolha == 0;
+    }
+
+    public void exibirMensagemErro(String errorText) {
+        JOptionPane.showMessageDialog(null, errorText, "Erro", JOptionPane.ERROR_MESSAGE);
+    }
+
+    public void exibirMensagemSaida(){
+        JOptionPane.showMessageDialog(null, "Programa finalizado.", "Conversor", JOptionPane.INFORMATION_MESSAGE);
     }
 }

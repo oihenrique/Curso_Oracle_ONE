@@ -9,7 +9,7 @@ public class Main {
 
         while (repeat) {
             try {
-                ConversorUI ui = new ConversorUI();
+                new ConversorUI();
                 repeat = components.exibirConfirmacaoSaida();
             } catch (NullPointerException exception) {
                 repeat = components.exibirConfirmacaoSaida();

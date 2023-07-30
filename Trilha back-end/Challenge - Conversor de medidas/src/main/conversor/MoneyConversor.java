@@ -1,5 +1,6 @@
 package main.conversor;
 
+import com.sun.javaws.exceptions.InvalidArgumentException;
 import main.util.CotacaoMoedas;
 import main.util.TipoConversao;
 
@@ -8,11 +9,13 @@ import main.util.TipoConversao;
  * @author Henrique Gomes.
  */
 public class MoneyConversor {
+    Exceptions exceptions = new Exceptions();
 
     public MoneyConversor(){
         UIComponents components = new UIComponents();
         ConversorMethods conversor = new ConversorMethods();
         double resultado;
+        double moedaParaConverter = 0;
 
         String[] escolhasDeMoedas = {
                 TipoConversao.REAL_PARA_DOLAR.getDescricao(),
@@ -27,7 +30,12 @@ public class MoneyConversor {
                 TipoConversao.PESO_CHILENO_PARA_REAL.getDescricao()
         };
 
-        double moedaParaConverter = components.exibirDoubleInput();
+        try {
+            moedaParaConverter = components.exibirDoubleInput();
+        } catch (NumberFormatException e) {
+            exceptions.InvalidArgumentException(moedaParaConverter);
+            moedaParaConverter = components.exibirDoubleInput();
+        }
 
         String escolhaDeConversao = components.exibirOpcoes("Conversor de moedas", escolhasDeMoedas);
 
