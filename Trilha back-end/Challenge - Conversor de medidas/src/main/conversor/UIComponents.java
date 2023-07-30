@@ -25,9 +25,9 @@ public class UIComponents {
      * O método exibirDoubleinput retorna uma interface interativa com um input e retorna um valor digitado pelo usuário.
      * @return double valor.
      */
-    public double exibirDoubleInput(){
+    public double exibirDoubleInput(String title){
 
-        return Double.parseDouble(JOptionPane.showInputDialog(null, "Digite o valor que deseja converter"));
+        return Double.parseDouble(JOptionPane.showInputDialog(null, "Digite o valor que deseja converter", title, JOptionPane.QUESTION_MESSAGE));
     }
 
     /**
@@ -35,8 +35,8 @@ public class UIComponents {
      *
      * @param resultado valor que será exibido na mensagem de resultado.
      */
-    public void exibirResultado(double resultado){
-        JOptionPane.showMessageDialog(null, "Resultado: $ " + String.format("%.2f", resultado), "Resultado", JOptionPane.INFORMATION_MESSAGE);
+    public void exibirResultado(double resultado, String unidade){
+        JOptionPane.showMessageDialog(null, "Resultado: " + String.format("%.2f", resultado) + unidade, "Resultado", JOptionPane.INFORMATION_MESSAGE);
     }
 
     /**

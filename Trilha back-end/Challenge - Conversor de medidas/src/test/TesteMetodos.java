@@ -16,7 +16,7 @@ public class TesteMetodos {
         //System.out.println(conversor.converterDeRealPara(cotacao.getDolar(), 200));
         //System.out.println(conversor.converterParaReal(cotacao.getDolar(), 200));
 
-        Double testInput = components.exibirDoubleInput();
+        Double testInput = components.exibirDoubleInput("TESTE");
 
         boolean x = util.verificarDoubleInput(testInput);
 

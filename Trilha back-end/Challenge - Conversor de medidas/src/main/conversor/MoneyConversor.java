@@ -9,9 +9,9 @@ import main.util.TipoConversao;
  * @author Henrique Gomes.
  */
 public class MoneyConversor {
-    Exceptions exceptions = new Exceptions();
 
     public MoneyConversor(){
+        Exceptions exceptions = new Exceptions();
         UIComponents components = new UIComponents();
         ConversorMethods conversor = new ConversorMethods();
         double resultado;
@@ -30,58 +30,55 @@ public class MoneyConversor {
                 TipoConversao.PESO_CHILENO_PARA_REAL.getDescricao()
         };
 
-        try {
-            moedaParaConverter = components.exibirDoubleInput();
-        } catch (NumberFormatException e) {
-            exceptions.InvalidArgumentException(moedaParaConverter);
-            moedaParaConverter = components.exibirDoubleInput();
-        }
-
         String escolhaDeConversao = components.exibirOpcoes("Conversor de moedas", escolhasDeMoedas);
+
+        try {
+            moedaParaConverter = components.exibirDoubleInput("Conversor de moedas");
+        } catch (NumberFormatException exception) {
+            exceptions.InvalidArgumentException(moedaParaConverter);
+            moedaParaConverter = components.exibirDoubleInput("Conversor de moedas");
+        }
 
         switch (escolhaDeConversao) {
             case "Real para dólar":
                 resultado = conversor.converterDeRealPara(moedaParaConverter, CotacaoMoedas.DOLAR.getValor());
-                components.exibirResultado(resultado);
+                components.exibirResultado(resultado, " dólares");
                 break;
             case "Real para Euro":
                 resultado = conversor.converterDeRealPara(moedaParaConverter, CotacaoMoedas.EURO.getValor());
-                components.exibirResultado(resultado);
+                components.exibirResultado(resultado, " euros");
                 break;
             case "Real para Libras Esterlinas":
                 resultado = conversor.converterDeRealPara(moedaParaConverter, CotacaoMoedas.LIBRA_ESTERLINA.getValor());
-                components.exibirResultado(resultado);
+                components.exibirResultado(resultado, " libras esterlinas");
                 break;
             case "Real para Peso Argentino":
                 resultado = conversor.converterDeRealPara(moedaParaConverter, CotacaoMoedas.PESO_ARGENTINO.getValor());
-                components.exibirResultado(resultado);
+                components.exibirResultado(resultado, " pesos argentinos");
                 break;
             case "Real para Peso Chileno":
                 resultado = conversor.converterDeRealPara(moedaParaConverter, CotacaoMoedas.PESO_CHILENO.getValor());
-                components.exibirResultado(resultado);
+                components.exibirResultado(resultado, " pesos chilenos");
                 break;
             case "Dólar para Real":
                 resultado = conversor.converterParaReal(moedaParaConverter, CotacaoMoedas.DOLAR.getValor());
-                components.exibirResultado(resultado);
+                components.exibirResultado(resultado, " reais");
                 break;
             case "Euro para Real":
                 resultado = conversor.converterParaReal(moedaParaConverter, CotacaoMoedas.EURO.getValor());
-                components.exibirResultado(resultado);
+                components.exibirResultado(resultado, " reais");
                 break;
             case "Libras Esterlinas para Real":
                 resultado = conversor.converterParaReal(moedaParaConverter, CotacaoMoedas.LIBRA_ESTERLINA.getValor());
-                components.exibirResultado(resultado);
+                components.exibirResultado(resultado, " reais");
                 break;
             case "Peso Argentino para Real":
                 resultado = conversor.converterParaReal(moedaParaConverter, CotacaoMoedas.PESO_ARGENTINO.getValor());
-                components.exibirResultado(resultado);
+                components.exibirResultado(resultado, " reais");
                 break;
             case "Peso Chileno para Real":
                 resultado = conversor.converterParaReal(moedaParaConverter, CotacaoMoedas.PESO_CHILENO.getValor());
-                components.exibirResultado(resultado);
-                break;
-            default:
-                // adicionar tratamento de exceção
+                components.exibirResultado(resultado, " reais");
                 break;
         }
     }

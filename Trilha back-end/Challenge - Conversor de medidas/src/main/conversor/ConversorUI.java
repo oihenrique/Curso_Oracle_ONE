@@ -9,13 +9,6 @@ public class ConversorUI {
     UIComponents components = new UIComponents();
 
     /**
-     * O método getMoneyConversor retorna uma instância da classe MoneyConversor. Ao chamar esse método, o construtor da classe MoneyConversor é executado automaticamente, criando as interfaces do conversor de moedas.
-     */
-    public void getMoneyConversor() {
-        new MoneyConversor();
-    }
-
-    /**
      * O construtor ConversorUI é responsável por exibir um menu interativo no qual o usuário pode selecionar o tipo de conversão que deseja realizar. A partir dessa escolha, o construtor retorna a interface do conversor correspondente.
      */
     public ConversorUI(){
@@ -24,7 +17,18 @@ public class ConversorUI {
         if (conversorChoose.equals("Conversor de moedas")) {
             getMoneyConversor();
         } else {
-            getMoneyConversor(); // Colocar a tela de temperaturas
+            getTemperatureConversor(); // Colocar a tela de temperaturas
         }
+    }
+
+    /**
+     * O método getMoneyConversor retorna uma instância da classe MoneyConversor. Ao chamar esse método, o construtor da classe MoneyConversor é executado automaticamente, criando as interfaces do conversor de moedas.
+     */
+    public void getMoneyConversor() {
+        new MoneyConversor();
+    }
+
+    public void getTemperatureConversor() {
+        new TemperatureConversor();
     }
 }
