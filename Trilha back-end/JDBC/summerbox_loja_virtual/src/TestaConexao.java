@@ -1,7 +1,7 @@
 import java.sql.Connection;
-import java.sql.SQLException;
-import java.sql.Statement;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 
 
 public class TestaConexao {
@@ -11,8 +11,8 @@ public class TestaConexao {
         Connection connection = connectionFactory.recuperarConexao();
 
         // executando queries e coletando dados da tabela
-        Statement stm = connection.createStatement();
-        stm.execute("SELECT ID, NOME, DESCRICAO FROM PRODUTO");
+        PreparedStatement stm = connection.prepareStatement("SELECT ID, NOME, DESCRICAO FROM PRODUTO");
+        stm.execute();
         ResultSet rst = stm.getResultSet();
 
         while (rst.next()) {

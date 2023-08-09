@@ -1,8 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="henribank-herdado-conta:jar2">
-    <output-path>$PROJECT_DIR$/out/artifacts/henribank_herdado_conta_jar2</output-path>
-    <root id="archive" name="henribank-herdado-conta-executavel.jar">
-      <element id="module-output" name="henribank-herdado-conta" />
-    </root>
-  </artifact>
-</component>
