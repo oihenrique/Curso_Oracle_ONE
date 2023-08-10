@@ -1,3 +1,5 @@
+import factory.ConnectionFactory;
+
 public class TestaPoolConexoes {
 
     public static void main(String[] args) {

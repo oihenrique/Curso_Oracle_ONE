@@ -1,4 +1,5 @@
 import DAO.ProdutoDAO;
+import factory.ConnectionFactory;
 import modelo.Produto;
 
 import java.sql.Connection;
