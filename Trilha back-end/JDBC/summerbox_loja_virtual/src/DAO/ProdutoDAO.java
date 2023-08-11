@@ -1,5 +1,6 @@
 package DAO;
 
+import modelo.Categoria;
 import modelo.Produto;
 
 import java.sql.Connection;
@@ -47,6 +48,26 @@ public class ProdutoDAO {
             try(ResultSet rst = pstm.getResultSet()){
                 while(rst.next()) {
                     Produto produto = new Produto(rst.getInt(1), rst.getString(2), rst.getString(3));
+                    produtos.add(produto);
+                }
+            }
+        }
+        return produtos;
+    }
+
+    public List<Produto> buscar(Categoria ctg) throws SQLException {
+
+        List<Produto> produtos = new ArrayList<>();
+        final String sql = "SELECT ID, NOME, DESCRICAO FROM PRODUTO WHERE CATEGORIA_ID = ?";
+
+        try(PreparedStatement pstm = connection.prepareStatement(sql)){
+            pstm.setInt(1, ctg.getId());
+            pstm.execute();
+
+            try (ResultSet rst = pstm.getResultSet()) {
+                while (rst.next()) {
+                    Produto produto = new Produto(rst.getInt(1), rst.getString(2), rst.getString(3));
+
                     produtos.add(produto);
                 }
             }

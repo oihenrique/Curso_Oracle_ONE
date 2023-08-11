@@ -1,3 +1,5 @@
+package test;
+
 import factory.ConnectionFactory;
 
 import java.sql.Connection;
@@ -16,7 +18,7 @@ public class TestaRemocao {
 
         stm.execute();
 
-        Integer linhasModificadas = stm.getUpdateCount(); // quantidade de linhas modificadas
+        int linhasModificadas = stm.getUpdateCount(); // quantidade de linhas modificadas
         System.out.println("Quantidade de linhas que foram modificadas: " + linhasModificadas);
     }
 }

@@ -1,3 +1,5 @@
+package test;
+
 import factory.ConnectionFactory;
 
 import java.sql.Connection;

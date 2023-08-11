@@ -1,3 +1,5 @@
+package test;
+
 import factory.ConnectionFactory;
 
 import java.sql.PreparedStatement;
@@ -25,7 +27,7 @@ public class TestaInsercao {
 
         ResultSet rst = stm.getGeneratedKeys();
         while (rst.next()) {
-            Integer id = rst.getInt(1);
+            int id = rst.getInt(1);
             System.out.println("O id criado foi: " + id);
         }
     }
