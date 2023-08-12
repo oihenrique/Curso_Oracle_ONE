@@ -12,10 +12,11 @@ public class ConnectionFactory {
 	public DataSource dataSource;
 
 	public ConnectionFactory() {
+		LoadDbAcessInfo dbAcessInfo = new LoadDbAcessInfo();
 		ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
-		comboPooledDataSource.setJdbcUrl("jdbc:mysql://localhost/loja_virtual?useTimezone=true&serverTimezone=UTC");
-		comboPooledDataSource.setUser("root");
-		comboPooledDataSource.setPassword("root");
+		comboPooledDataSource.setJdbcUrl(dbAcessInfo.getDbUrl());
+		comboPooledDataSource.setUser(dbAcessInfo.getDbUser());
+		comboPooledDataSource.setPassword(dbAcessInfo.getDbPassword());
 
 		this.dataSource = comboPooledDataSource;
 	}
