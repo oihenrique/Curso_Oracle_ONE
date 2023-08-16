@@ -1,24 +1,31 @@
+import br.com.lojamusique.DAO.CategoriaDao;
+import br.com.lojamusique.DAO.ProdutoDao;
+import br.com.lojamusique.Util.JPAUtil;
+import br.com.lojamusique.model.Categoria;
 import br.com.lojamusique.model.Produto;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.Persistence;
 import java.math.BigDecimal;
 
 public class CadastroDeProduto {
 
     public static void main(String[] args) {
-        Produto celular = new Produto();
+        Categoria celulares = new Categoria("CELULARES");
 
-        celular.setNome("Xiaomi Redmi");
-        celular.setDescricao("Redmi Note 4GB ram");
-        celular.setPreco(new BigDecimal("1300"));
+        Produto celular = new Produto("Motorola E5", "4gb tela led", new BigDecimal("1800"), celulares);
 
-        EntityManagerFactory factory = Persistence.createEntityManagerFactory("lojamusique"); // criando a conexão com o BD
-        EntityManager em = factory.createEntityManager();
+        EntityManager em = JPAUtil.getEntityManager();
+
+        ProdutoDao produtoDao = new ProdutoDao(em);
+        CategoriaDao categoriaDao = new CategoriaDao(em);
+
         em.getTransaction().begin(); // iniciando a transação para o BD
-        em.persist(celular); // realiza o insert
-        em.getTransaction().commit(); // comitando a transação
-        em.close();
+        categoriaDao.cadastrar(celulares);
+        produtoDao.cadastrar(celular);
+        em.getTransaction().commit(); // comitando a transação, pode ser usando flush() também
+        em.clear(); // ou close()
+        //celulares = em.merge(celulares); para voltar ao estado managed
+        //em.remove(celulares);
+        //em.close();
     }
 }

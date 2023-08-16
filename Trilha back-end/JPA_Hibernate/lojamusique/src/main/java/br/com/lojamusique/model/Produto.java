@@ -2,6 +2,7 @@ package br.com.lojamusique.model;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 
 @Entity // indicado que essa classe representa uma entidade
 @Table(name = "produtos") // especificando que o nome da tabela no banco de dados é "produtos" para que ele não confunda com o nome da classe
@@ -14,6 +15,20 @@ public class Produto {
     //@Column (name = "desc")
     private String descricao;
     private BigDecimal preco;
+    private LocalDate dataCadastro = LocalDate.now();
+    //@Enumerated(EnumType.STRING) // especificando para salvar no banco de dados como string
+    @ManyToOne
+    private Categoria categoria;
+
+    public Produto() {
+    }
+
+    public Produto(String nome, String descricao, BigDecimal preco, Categoria categoria) {
+        this.nome = nome;
+        this.descricao = descricao;
+        this.preco = preco;
+        this.categoria = categoria;
+    }
 
     public Long getId() {
         return id;
@@ -42,5 +57,21 @@ public class Produto {
 
     public void setPreco(BigDecimal preco) {
         this.preco = preco;
+    }
+
+    public LocalDate getDataCadastro() {
+        return dataCadastro;
+    }
+
+    public void setDataCadastro(LocalDate dataCadastro) {
+        this.dataCadastro = dataCadastro;
+    }
+
+    public Categoria getCategoria() {
+        return categoria;
+    }
+
+    public void setCategoria(Categoria categoria) {
+        this.categoria = categoria;
     }
 }
