@@ -5,11 +5,13 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 
 @Entity // indicado que essa classe representa uma entidade
-@Table(name = "produtos") // especificando que o nome da tabela no banco de dados é "produtos" para que ele não confunda com o nome da classe
+@Table(name = "produtos")
+// especificando que o nome da tabela no banco de dados é "produtos" para que ele não confunda com o nome da classe
 public class Produto {
 
     @Id // indicando que essa é a primary key
-    @GeneratedValue(strategy = GenerationType.IDENTITY) // identificando que o valor é gerado no banco de dados e não na aplicação
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    // identificando que o valor é gerado no banco de dados e não na aplicação
     private Long id;
     private String nome;
     //@Column (name = "desc")

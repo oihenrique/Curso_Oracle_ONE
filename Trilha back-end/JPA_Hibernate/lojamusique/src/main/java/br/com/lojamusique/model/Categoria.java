@@ -12,7 +12,7 @@ public class Categoria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
-    private  String nome;
+    private String nome;
 
     public Categoria() {
     }

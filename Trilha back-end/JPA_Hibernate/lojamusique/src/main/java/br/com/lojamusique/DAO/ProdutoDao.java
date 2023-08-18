@@ -22,12 +22,12 @@ public class ProdutoDao {
         return em.find(Produto.class, id);
     }
 
-    public List<Produto> buscarTodos(){
+    public List<Produto> buscarTodos() {
         String jpql = "SELECT p FROM Produto p"; // usar o nome da entidade invés do nome da tabela
         return em.createQuery(jpql, Produto.class).getResultList();
     }
 
-    public List<Produto> buscarPorNome(String nome){
+    public List<Produto> buscarPorNome(String nome) {
         String jpql = "SELECT p FROM Produto p WHERE p.nome = :nome"; // named parameter, poderia ser ?1, ?2 e aí se referenciaria ao parâmetro pelo número
         return em.createQuery(jpql, Produto.class).setParameter("nome", nome).getResultList();
     }
@@ -37,7 +37,7 @@ public class ProdutoDao {
         return em.createQuery(jpql, BigDecimal.class).setParameter("nome", nome).getSingleResult();
     }
 
-    public List<Produto> buscarPorNomeDaCategoria(String nome){
+    public List<Produto> buscarPorNomeDaCategoria(String nome) {
         String jpql = "SELECT p FROM Produto p WHERE p.categoria.nome = :nome";
         return em.createQuery(jpql, Produto.class).setParameter("nome", nome).getResultList();
     }
