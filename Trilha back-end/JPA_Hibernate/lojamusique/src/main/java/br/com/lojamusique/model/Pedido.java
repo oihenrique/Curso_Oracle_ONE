@@ -15,7 +15,7 @@ public class Pedido {
     private Long id;
     private LocalDate dataPedido = LocalDate.now();
     private Long clienteId;
-    private BigDecimal valorTotal;
+    private BigDecimal valorTotal = BigDecimal.ZERO;
 
     @ManyToOne
     private Cliente cliente; // especificando o relacionamento entre as tabelas
@@ -33,6 +33,7 @@ public class Pedido {
     public void adicionarItem(ItemPedido item) {
         item.setPedido(this);
         this.itens.add(item);
+        this.valorTotal = this.valorTotal.add(item.getValor());
     }
 
     public Long getId() {

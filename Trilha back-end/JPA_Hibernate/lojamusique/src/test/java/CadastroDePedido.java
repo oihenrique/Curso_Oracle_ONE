@@ -7,6 +7,7 @@ import br.com.lojamusique.model.*;
 
 import javax.persistence.EntityManager;
 import java.math.BigDecimal;
+import java.util.List;
 
 public class CadastroDePedido {
 
@@ -17,20 +18,27 @@ public class CadastroDePedido {
         CategoriaDao categoriaDao = new CategoriaDao(em);
         ProdutoDao produtoDao = new ProdutoDao(em);
 
-        Categoria TV = new Categoria("TELEVISÃO");
-        categoriaDao.cadastrar(TV);
+        Categoria categoria = new Categoria("Eletrônicos");
+        categoriaDao.cadastrar(categoria);
 
         Cliente sabrininha = new Cliente("Sabrina", "222.222.222-00");
         clienteDao.cadastrar(sabrininha);
 
         Pedido pedido = new Pedido(sabrininha);
-        Produto televisaoLcd = new Produto("TV LCD 4k 45 polegadas", "Televisao LCD", new BigDecimal("4000"), TV);
+        Produto televisaoLcd = new Produto("Playstation 3", "PS3", new BigDecimal("2000"), categoria);
         produtoDao.cadastrar(televisaoLcd);
-        pedido.adicionarItem(new ItemPedido(1, pedido, televisaoLcd));
+        pedido.adicionarItem(new ItemPedido(10, pedido, televisaoLcd));
         pedidoDao.cadastrar(pedido);
 
         em.getTransaction().begin();
         em.getTransaction().commit();
+
+        BigDecimal totalVendido = pedidoDao.valorTotalVendido();
+        System.out.println("Valor toral: " + totalVendido);
+
+        List<RelatorioDeVendasVO> relatorioDeVendas = pedidoDao.relatorioDeVendas();
+        relatorioDeVendas.forEach(System.out::println);
+        
         em.close();
     }
 }

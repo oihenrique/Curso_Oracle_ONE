@@ -1,7 +1,6 @@
 package br.com.lojamusique.model;
 
 import javax.persistence.*;
-import java.math.BigInteger;
 
 @Entity
 @Table(name = "clientes")
