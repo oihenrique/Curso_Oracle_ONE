@@ -21,7 +21,7 @@ public class Produto {
     private BigDecimal preco;
     private LocalDate dataCadastro = LocalDate.now();
 
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.LAZY)
     //@Enumerated(EnumType.STRING) // especificando para salvar no banco de dados como string
     private Categoria categoria;
 

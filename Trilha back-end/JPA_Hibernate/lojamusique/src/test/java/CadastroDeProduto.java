@@ -5,7 +5,6 @@ import br.com.lojamusique.model.Categoria;
 import br.com.lojamusique.model.Produto;
 
 import javax.persistence.EntityManager;
-import javax.persistence.EntityManagerFactory;
 import java.math.BigDecimal;
 import java.util.List;
 

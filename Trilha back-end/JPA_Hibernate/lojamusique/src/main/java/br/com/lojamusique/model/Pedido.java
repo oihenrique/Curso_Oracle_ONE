@@ -17,7 +17,7 @@ public class Pedido {
     private Long clienteId;
     private BigDecimal valorTotal = BigDecimal.ZERO;
 
-    @ManyToOne
+    @ManyToOne (fetch = FetchType.LAZY)
     private Cliente cliente; // especificando o relacionamento entre as tabelas
 
     @OneToMany (mappedBy = "pedido", cascade = CascadeType.ALL)
@@ -58,5 +58,9 @@ public class Pedido {
 
     public void setValorTotal(BigDecimal valorTotal) {
         this.valorTotal = valorTotal;
+    }
+
+    public Cliente getCliente() {
+        return this.cliente;
     }
 }
