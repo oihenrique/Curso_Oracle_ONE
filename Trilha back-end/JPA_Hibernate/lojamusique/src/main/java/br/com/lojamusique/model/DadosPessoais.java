@@ -1,24 +1,33 @@
-public class Cliente {
+package br.com.lojamusique.model;
+
+import javax.persistence.Embeddable;
+
+@Embeddable
+public class DadosPessoais {
     private String nome;
     private String cpf;
-    private String profissao;
+
+    public DadosPessoais() {
+    }
+
+    public DadosPessoais(String nome, String cpf) {
+        this.nome = nome;
+        this.cpf = cpf;
+    }
 
     public String getNome() {
         return nome;
     }
+
     public String getCpf() {
         return cpf;
     }
-    public String getProfissao() {
-        return profissao;
-    }
+
     public void setNome(String nome) {
         this.nome = nome;
     }
+
     public void setCpf(String cpf) {
         this.cpf = cpf;
-    }
-    public void setProfissao(String profissao) {
-        this.profissao = profissao;
     }
 }

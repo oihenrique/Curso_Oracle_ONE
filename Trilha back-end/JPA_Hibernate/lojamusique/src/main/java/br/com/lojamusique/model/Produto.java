@@ -8,6 +8,8 @@ import java.time.LocalDate;
 @Table(name = "produtos")
 // especificando que o nome da tabela no banco de dados é "produtos" para que ele não confunda com o nome da classe
 @NamedQuery(name = "Produto.produtosPorCategoria", query = "SELECT p FROM Produto p WHERE p.categoria.nome = :nome")
+//Inheritance(strategy = InheritanceType.SINGLE_TABLE) // herdando para uma tabela única
+@Inheritance(strategy = InheritanceType.JOINED) // herdando para tabelas separadas
 public class Produto {
 
     @Id // indicando que essa é a primary key
@@ -21,7 +23,7 @@ public class Produto {
     private BigDecimal preco;
     private LocalDate dataCadastro = LocalDate.now();
 
-    @ManyToOne (fetch = FetchType.LAZY)
+    @ManyToOne(fetch = FetchType.LAZY)
     //@Enumerated(EnumType.STRING) // especificando para salvar no banco de dados como string
     private Categoria categoria;
 

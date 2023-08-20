@@ -24,7 +24,7 @@ public class CadastroDeProduto {
         //List<Produto> produto = produtoDao.buscarPorNome("Xiaomi Redmi");
         //produto.forEach(p2 -> System.out.println(p2.getNome()));
 
-        List<Produto> produto = produtoDao.buscarPorNomeDaCategoria("Celulares");
+        List<Produto> produto = produtoDao.buscarPorParametrosComCriteria("Celulares", null, null);
         produto.forEach(p2 -> System.out.println(p2.getNome()));
 
         BigDecimal precoDoProduto = produtoDao.buscarPrecoDoProdutoComNome("Xiaomi Redmi");
@@ -49,6 +49,6 @@ public class CadastroDeProduto {
         em.clear(); // ou close()
         //celulares = em.merge(celulares); para voltar ao estado managed
         //em.remove(celulares);
-        //em.close();
+        em.close();
     }
 }
