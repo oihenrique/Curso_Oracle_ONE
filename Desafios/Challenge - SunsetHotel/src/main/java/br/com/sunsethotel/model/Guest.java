@@ -2,6 +2,7 @@ package br.com.sunsethotel.model;
 
 import javax.persistence.*;
 import java.time.LocalDate;
+import java.util.List;
 
 @Entity
 @Table(name = "guests")
@@ -15,8 +16,8 @@ public class Guest {
     private String nationality;
     private String phoneNumber;
 
-    private Integer guestReservationId; // tipos primitivos não podem ser definidos como null
-
+    @OneToMany (mappedBy = "guestName")
+    private List<Reservation> reservations;
 
     public Guest() {
     }
@@ -51,10 +52,6 @@ public class Guest {
 
     public String getPhoneNumber() {
         return phoneNumber;
-    }
-
-    public int getGuestReservationId() {
-        return guestReservationId;
     }
 
     public void setGuestName(String guestName) {

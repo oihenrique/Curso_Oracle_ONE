@@ -10,30 +10,37 @@ public class Reservation {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reservationID;
-    private short roomNumber;
     private LocalDate reservationDate;
     private LocalDate expirationDate;
     private BigDecimal reservationValue;
     private String paymentMethod;
     private String insertedBy;
+    @ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    @JoinColumn(name = "guestName", referencedColumnName = "guestName")
+    private Guest guestName;
+
+    @OneToOne
+    @JoinColumn(name = "roomNumber", referencedColumnName = "roomNumber")
+    private Room roomNumber;
 
     public Reservation(){}
 
-    public Reservation(short roomNumber, LocalDate reservationDate, LocalDate expirationDate, BigDecimal reservationValue, String paymentMethod, String insertedBy) {
+    public Reservation(Guest guest, Room roomNumber, LocalDate reservationDate, LocalDate expirationDate, BigDecimal reservationValue, String paymentMethod, String insertedBy) {
         this.roomNumber = roomNumber;
         this.reservationDate = reservationDate;
         this.expirationDate = expirationDate;
         this.reservationValue = reservationValue;
         this.paymentMethod = paymentMethod;
         this.insertedBy = insertedBy;
+        this.guestName = guest;
     }
 
     public int getReservationID() {
         return reservationID;
     }
 
-    public short getRoomNumber() {
-        return roomNumber;
+    public int getRoomNumber() {
+        return this.roomNumber.getRoomNumber();
     }
 
     public LocalDate getReservationDate() {
@@ -56,8 +63,12 @@ public class Reservation {
         return insertedBy;
     }
 
-    public void setRoomNumber(short roomNumber) {
-        this.roomNumber = roomNumber;
+    public Guest getGuestName() {
+        return guestName;
+    }
+
+    public void setRoomNumber(int number) {
+        this.roomNumber.setRoomNumber(number);
     }
 
     public void setReservationDate(LocalDate reservationDate) {

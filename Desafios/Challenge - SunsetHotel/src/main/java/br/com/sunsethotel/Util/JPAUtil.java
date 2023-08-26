@@ -5,7 +5,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
 
 public class JPAUtil {
-    private static final EntityManagerFactory FACTORY = Persistence.createEntityManagerFactory("Challenge-SunsetHotel"); // criando a conexão com o BD
+    private static final EntityManagerFactory FACTORY = Persistence.createEntityManagerFactory("Challenge-SunsetHotel");
 
     public static EntityManager getEntityManager() {
         return FACTORY.createEntityManager();

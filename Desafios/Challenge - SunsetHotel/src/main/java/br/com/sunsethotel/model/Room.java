@@ -8,14 +8,14 @@ public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int roomId;
-    private short roomNumber;
+    private int roomNumber;
     private String roomType;
     private boolean roomAvailability;
 
     public Room() {
     }
 
-    public Room(short roomNumber, String roomType, boolean roomAvailability) {
+    public Room(int roomNumber, String roomType, boolean roomAvailability) {
         this.roomNumber = roomNumber;
         this.roomType = roomType;
         this.roomAvailability = roomAvailability;
@@ -25,7 +25,7 @@ public class Room {
         return roomId;
     }
 
-    public short getRoomNumber() {
+    public int getRoomNumber() {
         return roomNumber;
     }
 
@@ -37,7 +37,7 @@ public class Room {
         return roomAvailability;
     }
 
-    public void setRoomNumber(short roomNumber) {
+    public void setRoomNumber(int roomNumber) {
         this.roomNumber = roomNumber;
     }
 
