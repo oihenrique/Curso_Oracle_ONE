@@ -14,7 +14,7 @@ public class UserDaoTest {
 
         userDao.createUser(user1);
 
-        User user = em.createQuery("SELECT u FROM User u WHERE acessCode = :aCode", User.class).setParameter("aCode", 19362).getSingleResult();
+        User user = userDao.searchByAcessCode(19362);
         //user.setEmail("user.mail@sunsethotel.com");
 
         userDao.updateUser(user, "", null, null, null, "henri123456");

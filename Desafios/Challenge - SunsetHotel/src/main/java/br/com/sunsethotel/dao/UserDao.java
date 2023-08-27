@@ -4,6 +4,7 @@ import br.com.sunsethotel.model.User;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import java.util.List;
 import java.util.Random;
 
@@ -51,6 +52,19 @@ public class UserDao {
     public List<User> searchByName(String name) {
         String selectName = "SELECT u FROM User u WHERE u.userName = :name";
         return dbConnection.createQuery(selectName, User.class).setParameter("name", name).getResultList();
+    }
+
+    public User searchByAcessCode(Integer acessCode) {
+        User user;
+        String selectAcessCode = "SELECT u FROM User u WHERE u.acessCode = :acessCode";
+
+        try {
+            user = dbConnection.createQuery(selectAcessCode, User.class).setParameter("acessCode", acessCode).getSingleResult();
+        } catch (NoResultException e) {
+            user = null;
+        }
+
+        return user;
     }
 
     public boolean authenticateUser(User user, Integer acessCode, String password) {

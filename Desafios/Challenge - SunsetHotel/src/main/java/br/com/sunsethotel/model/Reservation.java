@@ -19,7 +19,7 @@ public class Reservation {
     @JoinColumn(name = "guestName", referencedColumnName = "guestName")
     private Guest guestName;
 
-    @OneToOne
+    @OneToOne (cascade = CascadeType.ALL)
     @JoinColumn(name = "roomNumber", referencedColumnName = "roomNumber")
     private Room roomNumber;
 

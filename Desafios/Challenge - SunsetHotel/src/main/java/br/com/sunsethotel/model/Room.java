@@ -3,29 +3,29 @@ package br.com.sunsethotel.model;
 import javax.persistence.*;
 
 @Entity
-@Table (name = "rooms")
+@Table(name = "rooms")
 public class Room {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int roomId;
-    private int roomNumber;
+    private Integer roomId;
+    private Integer roomNumber;
     private String roomType;
     private boolean roomAvailability;
 
     public Room() {
     }
 
-    public Room(int roomNumber, String roomType, boolean roomAvailability) {
+    public Room(Integer roomNumber, String roomType, boolean roomAvailability) {
         this.roomNumber = roomNumber;
         this.roomType = roomType;
         this.roomAvailability = roomAvailability;
     }
 
-    public int getRoomId() {
+    public Integer getRoomId() {
         return roomId;
     }
 
-    public int getRoomNumber() {
+    public Integer getRoomNumber() {
         return roomNumber;
     }
 
@@ -37,7 +37,7 @@ public class Room {
         return roomAvailability;
     }
 
-    public void setRoomNumber(int roomNumber) {
+    public void setRoomNumber(Integer roomNumber) {
         this.roomNumber = roomNumber;
     }
 
