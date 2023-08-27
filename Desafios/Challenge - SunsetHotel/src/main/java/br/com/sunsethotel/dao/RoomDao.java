@@ -1,6 +1,5 @@
 package br.com.sunsethotel.dao;
 
-import br.com.sunsethotel.model.Guest;
 import br.com.sunsethotel.model.Room;
 
 import javax.persistence.EntityManager;
@@ -17,7 +16,9 @@ public class RoomDao {
     }
 
     public void registerRoom(Room room) {
-        dbConnection.persist(room);
+        if (room != null) {
+            dbConnection.persist(room);
+        }
     }
 
     public void updateRoom(Room room, Integer roomNumber, String roomType, Boolean roomAvailability) {
@@ -36,10 +37,12 @@ public class RoomDao {
         }
     }
 
-    public void deleteRoom(Guest guest) {
-        if (guest != null) {
+    public void deleteRoom(Room room) {
+        if (room != null) {
+            Room managedRoom = dbConnection.find(Room.class, room.getRoomId());
+
             try {
-                dbConnection.remove(dbConnection.find(Room.class, guest.getGuestId()));
+                dbConnection.remove(managedRoom);
             } catch (RuntimeException e) {
                 System.out.println("Room not found");
             }

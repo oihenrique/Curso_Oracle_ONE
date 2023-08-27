@@ -1,12 +1,17 @@
 package br.com.sunsethotel.model;
 
+import br.com.sunsethotel.Util.JPAUtil;
+import br.com.sunsethotel.dao.RoomDao;
+
 import javax.persistence.*;
+import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
+
 @Entity
-@Table(name="reservations")
-public class Reservation {
+@Table(name = "reservations")
+public class Reservation implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reservationID;
@@ -14,29 +19,32 @@ public class Reservation {
     private LocalDate expirationDate;
     private BigDecimal reservationValue;
     private String paymentMethod;
-    private String insertedBy;
-    @ManyToOne (fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+
+    @ManyToOne(fetch = FetchType.LAZY, cascade = CascadeType.MERGE)
     @JoinColumn(name = "guestName", referencedColumnName = "guestName")
     private Guest guestName;
 
-    @OneToOne (cascade = CascadeType.ALL)
+    @OneToOne(cascade = CascadeType.REFRESH)
     @JoinColumn(name = "roomNumber", referencedColumnName = "roomNumber")
     private Room roomNumber;
 
-    public Reservation(){}
+    public Reservation() {
+    }
 
-    public Reservation(Guest guest, Room roomNumber, LocalDate reservationDate, LocalDate expirationDate, BigDecimal reservationValue, String paymentMethod, String insertedBy) {
+    public Reservation(Guest guest, Room roomNumber, LocalDate reservationDate, LocalDate expirationDate, String paymentMethod) {
         this.roomNumber = roomNumber;
         this.reservationDate = reservationDate;
         this.expirationDate = expirationDate;
-        this.reservationValue = reservationValue;
         this.paymentMethod = paymentMethod;
-        this.insertedBy = insertedBy;
         this.guestName = guest;
     }
 
     public int getReservationID() {
         return reservationID;
+    }
+
+    public Room getRoom() {
+        return this.roomNumber;
     }
 
     public int getRoomNumber() {
@@ -59,15 +67,16 @@ public class Reservation {
         return paymentMethod;
     }
 
-    public String getInsertedBy() {
-        return insertedBy;
-    }
 
-    public Guest getGuestName() {
+    public Guest getGuest() {
         return guestName;
     }
 
-    public void setRoomNumber(int number) {
+    public void setRoom(Integer number) {
+        this.roomNumber = new RoomDao(JPAUtil.getEntityManager()).searchByRoomNumber(number);
+    }
+
+    public void setRoomNumber(Integer number) {
         this.roomNumber.setRoomNumber(number);
     }
 

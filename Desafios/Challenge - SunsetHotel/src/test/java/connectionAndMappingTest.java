@@ -18,7 +18,7 @@ public class connectionAndMappingTest {
         Room room = new Room(222, "Suite", true);
         em.persist(room);
 
-        Reservation res = new Reservation(henrizito, room, LocalDate.of(2023, 8, 26), LocalDate.of(2023, 8, 27), new BigDecimal(500), "Débito", "Giancarlo");
+        Reservation res = new Reservation(henrizito, room, LocalDate.of(2023, 8, 26), LocalDate.of(2023, 8, 27), "Débito");
 
         em.persist(res);
 

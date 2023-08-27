@@ -16,7 +16,9 @@ public class GuestDao {
     }
 
     public void registerGuest(Guest guest) {
-        dbConnection.persist(guest);
+        if (guest != null) {
+            dbConnection.persist(guest);
+        }
     }
 
     public void updateGuest(Guest guest, String guestName, String cpf, String phoneNumber) {
@@ -37,8 +39,10 @@ public class GuestDao {
 
     public void deleteGuest(Guest guest) {
         if (guest != null) {
+            Guest managedGuest = dbConnection.find(Guest.class, guest.getGuestId());
+
             try {
-                dbConnection.remove(dbConnection.find(Guest.class, guest.getGuestId()));
+                dbConnection.remove(managedGuest);
             } catch (RuntimeException e) {
                 System.out.println("Guest not found");
             }

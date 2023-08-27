@@ -17,7 +17,9 @@ public class UserDao {
     }
 
     public void createUser(User user) {
-        dbConnection.persist(user);
+        if (user != null) {
+            dbConnection.persist(user);
+        }
     }
 
     public void updateUser(User user, String name, String email, Boolean admin, String cpf, String password) {
@@ -45,8 +47,10 @@ public class UserDao {
 
     public void deleteUser(User user) {
         if (user != null) {
+
+            User managedUser = dbConnection.find(User.class, user.getUserId());
             try {
-                dbConnection.remove(dbConnection.find(User.class, user.getUserId()));
+                dbConnection.remove(managedUser);
             } catch (RuntimeException e) {
                 System.out.println("user not found");
             }
@@ -84,14 +88,16 @@ public class UserDao {
     }
 
     public boolean authenticateUser(User user, Integer acessCode, String password) {
-        String selectDBAcessCode = "SELECT u.acessCode FROM User u WHERE u.userId = :id";
-        Integer dbAcessCode = dbConnection.createQuery(selectDBAcessCode, Integer.class).setParameter("id", user.getUserId()).getSingleResult();
+        if (user != null) {
+            String selectDBAcessCode = "SELECT u.acessCode FROM User u WHERE u.userId = :id";
+            Integer dbAcessCode = dbConnection.createQuery(selectDBAcessCode, Integer.class).setParameter("id", user.getUserId()).getSingleResult();
 
-        String selectDBPassword = "SELECT u.userPassword FROM User u WHERE u.userId = :id";
-        String hashedPassword = dbConnection.createQuery(selectDBPassword, String.class).setParameter("id", user.getUserId()).getSingleResult();
+            String selectDBPassword = "SELECT u.userPassword FROM User u WHERE u.userId = :id";
+            String hashedPassword = dbConnection.createQuery(selectDBPassword, String.class).setParameter("id", user.getUserId()).getSingleResult();
 
-        if (acessCode.equals(dbAcessCode)) {
-            return verifyPassword(password, hashedPassword);
+            if (acessCode.equals(dbAcessCode)) {
+                return verifyPassword(password, hashedPassword);
+            }
         }
         return false;
     }

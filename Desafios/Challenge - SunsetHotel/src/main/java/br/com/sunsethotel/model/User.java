@@ -57,7 +57,7 @@ public class User {
         return email;
     }
 
-    public boolean isAdministrator() {
+    public Boolean isAdministrator() {
         return administrator;
     }
 

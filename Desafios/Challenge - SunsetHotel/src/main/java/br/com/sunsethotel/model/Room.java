@@ -1,10 +1,13 @@
 package br.com.sunsethotel.model;
 
+import org.hibernate.annotations.Cascade;
+
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "rooms")
-public class Room {
+public class Room implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer roomId;
@@ -33,7 +36,7 @@ public class Room {
         return roomType;
     }
 
-    public boolean isRoomAvailability() {
+    public Boolean isRoomAvailability() {
         return roomAvailability;
     }
 

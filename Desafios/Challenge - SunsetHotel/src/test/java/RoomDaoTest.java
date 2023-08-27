@@ -32,7 +32,9 @@ public class RoomDaoTest {
         }
 
         Room roomSearch = roomDao.searchByRoomNumber(200);
-        System.out.println(roomSearch.isRoomAvailability());
+        if (roomSearch != null) {
+            System.out.println(roomSearch.isRoomAvailability());
+        }
 
         em.getTransaction().begin();
         em.getTransaction().commit();
