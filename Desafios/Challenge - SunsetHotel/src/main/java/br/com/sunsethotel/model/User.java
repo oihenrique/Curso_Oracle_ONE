@@ -1,14 +1,17 @@
 package br.com.sunsethotel.model;
 
+import br.com.sunsethotel.Util.JPAUtil;
+import br.com.sunsethotel.dao.UserDao;
+
 import javax.persistence.*;
 import java.time.LocalDate;
 
 @Entity
-@Table (name = "users")
+@Table(name = "users")
 public class User {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int userId;
+    private Integer userId;
     private String userName;
     private String email;
     private boolean administrator;
@@ -17,20 +20,32 @@ public class User {
     private int acessCode;
     private String userPassword;
 
-    public User() {
-    }
+    /**
+     * Creates a user object.
+     *
+     * @param name:      user name
+     * @param email:     user email
+     * @param admin:     true if is admin user
+     * @param cpf:       user cpf number
+     * @param birthDate: user birthdate
+     * @param password:  user hash password
+     */
+    public User(String name, String email, boolean admin, String cpf, LocalDate birthDate, String password) {
+        EntityManager dbConnection = JPAUtil.getEntityManager();
 
-    public User(String name, String email, boolean admin, String cpf, LocalDate birthDate, int acessCode, String password) {
         this.userName = name;
         this.email = email;
         this.administrator = admin;
         this.cpf = cpf;
         this.birthDate = birthDate;
-        this.acessCode = acessCode;
-        this.userPassword = password;
+        this.acessCode = new UserDao(dbConnection).generateAcessCode();
+        this.userPassword = new UserDao(dbConnection).generateHashPassword(password);
     }
 
-    public int getUserId() {
+    public User() {
+    }
+
+    public Integer getUserId() {
         return userId;
     }
 
