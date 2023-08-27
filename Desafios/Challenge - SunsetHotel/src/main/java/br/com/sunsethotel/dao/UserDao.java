@@ -5,6 +5,7 @@ import org.mindrot.jbcrypt.BCrypt;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Random;
 
@@ -20,51 +21,66 @@ public class UserDao {
     }
 
     public void updateUser(User user, String name, String email, Boolean admin, String cpf, String password) {
-        if (name != null && !name.trim().isEmpty()) {
-            user.setUserName(name);
-        }
-        if (email != null && !email.trim().isEmpty()) {
-            user.setEmail(email);
-        }
-        if (admin != null) {
-            user.setAdministrator(admin);
-        }
-        if (cpf != null && !cpf.trim().isEmpty()) {
-            user.setCpf(cpf);
-        }
-        if (password != null && !password.trim().isEmpty()) {
-            String newPassword = generateHashPassword(password);
-            user.setUserPassword(newPassword);
-        }
+        if (user != null) {
+            if (name != null && !name.trim().isEmpty()) {
+                user.setUserName(name);
+            }
+            if (email != null && !email.trim().isEmpty()) {
+                user.setEmail(email);
+            }
+            if (admin != null) {
+                user.setAdministrator(admin);
+            }
+            if (cpf != null && !cpf.trim().isEmpty()) {
+                user.setCpf(cpf);
+            }
+            if (password != null && !password.trim().isEmpty()) {
+                String newPassword = generateHashPassword(password);
+                user.setUserPassword(newPassword);
+            }
 
-        dbConnection.merge(user);
+            dbConnection.merge(user);
+        }
     }
 
-    public void deleteUser(Integer userId) {
-        dbConnection.remove(dbConnection.find(User.class, userId));
+    public void deleteUser(User user) {
+        if (user != null) {
+            try {
+                dbConnection.remove(dbConnection.find(User.class, user.getUserId()));
+            } catch (RuntimeException e) {
+                System.out.println("user not found");
+            }
+        }
     }
 
     public List<User> listAllUsers() {
         String selectAllUsers = "SELECT u FROM User u";
-        return dbConnection.createQuery(selectAllUsers, User.class).getResultList();
+
+        try {
+            return dbConnection.createQuery(selectAllUsers, User.class).getResultList();
+        } catch (NoResultException e) {
+            return Collections.emptyList();
+        }
     }
 
     public List<User> searchByName(String name) {
         String selectName = "SELECT u FROM User u WHERE u.userName = :name";
-        return dbConnection.createQuery(selectName, User.class).setParameter("name", name).getResultList();
+
+        try {
+            return dbConnection.createQuery(selectName, User.class).setParameter("name", name).getResultList();
+        } catch (NoResultException e) {
+            return Collections.emptyList();
+        }
     }
 
     public User searchByAcessCode(Integer acessCode) {
-        User user;
         String selectAcessCode = "SELECT u FROM User u WHERE u.acessCode = :acessCode";
 
         try {
-            user = dbConnection.createQuery(selectAcessCode, User.class).setParameter("acessCode", acessCode).getSingleResult();
+            return dbConnection.createQuery(selectAcessCode, User.class).setParameter("acessCode", acessCode).getSingleResult();
         } catch (NoResultException e) {
-            user = null;
+            return null;
         }
-
-        return user;
     }
 
     public boolean authenticateUser(User user, Integer acessCode, String password) {

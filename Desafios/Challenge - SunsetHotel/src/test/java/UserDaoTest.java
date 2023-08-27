@@ -19,7 +19,7 @@ public class UserDaoTest {
 
         userDao.updateUser(user, "", null, null, null, "henri123456");
         System.out.println(userDao.authenticateUser(user, 19362, "h123456"));
-        userDao.deleteUser(user.getUserId());
+        userDao.deleteUser(user);
 
         for (User users : userDao.listAllUsers()) {
             System.out.println(users.getUserName());

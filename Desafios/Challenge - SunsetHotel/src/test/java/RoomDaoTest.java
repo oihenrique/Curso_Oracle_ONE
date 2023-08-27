@@ -25,7 +25,7 @@ public class RoomDaoTest {
 
         roomDao.updateRoom(roomFromDB, null, null, false);
 
-        //roomDao.deleteRoom(roomFromDB.getRoomId());
+        //roomDao.deleteRoom(roomFromDB);
 
         for (Room rooms : roomDao.listRooms()) {
             System.out.println(rooms.getRoomNumber());

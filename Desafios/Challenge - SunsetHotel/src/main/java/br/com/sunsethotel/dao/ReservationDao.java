@@ -1,9 +1,7 @@
 package br.com.sunsethotel.dao;
-import br.com.sunsethotel.model.Reservation;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.List;
 
 public class ReservationDao {
 

@@ -1,9 +1,11 @@
 package br.com.sunsethotel.dao;
 
+import br.com.sunsethotel.model.Guest;
 import br.com.sunsethotel.model.Room;
 
 import javax.persistence.EntityManager;
 import javax.persistence.NoResultException;
+import java.util.Collections;
 import java.util.List;
 
 public class RoomDao {
@@ -19,38 +21,47 @@ public class RoomDao {
     }
 
     public void updateRoom(Room room, Integer roomNumber, String roomType, Boolean roomAvailability) {
-        if (roomNumber != null) {
-            room.setRoomNumber(roomNumber);
-        }
-        if (roomType != null && !roomType.trim().isEmpty()) {
-            room.setRoomType(roomType);
-        }
-        if (roomAvailability != null) {
-            room.setRoomAvailability(roomAvailability);
-        }
+        if (room != null) {
+            if (roomNumber != null) {
+                room.setRoomNumber(roomNumber);
+            }
+            if (roomType != null && !roomType.trim().isEmpty()) {
+                room.setRoomType(roomType);
+            }
+            if (roomAvailability != null) {
+                room.setRoomAvailability(roomAvailability);
+            }
 
-        dbConnection.merge(room);
+            dbConnection.merge(room);
+        }
     }
 
-    public void deleteRoom(Integer roomId) {
-        dbConnection.remove(dbConnection.find(Room.class, roomId));
+    public void deleteRoom(Guest guest) {
+        if (guest != null) {
+            try {
+                dbConnection.remove(dbConnection.find(Room.class, guest.getGuestId()));
+            } catch (RuntimeException e) {
+                System.out.println("Room not found");
+            }
+        }
     }
 
     public List<Room> listRooms() {
         String selectAllRooms = "SELECT r FROM Room r";
-        return dbConnection.createQuery(selectAllRooms, Room.class).getResultList();
+        try {
+            return dbConnection.createQuery(selectAllRooms, Room.class).getResultList();
+        } catch (NoResultException e) {
+            return Collections.emptyList();
+        }
     }
 
     public Room searchByRoomNumber(Integer roomNumber) {
-        Room room;
         String selectRoomNumber = "SELECT r FROM Room r WHERE r.roomNumber = :roomNumber";
 
         try {
-            room = dbConnection.createQuery(selectRoomNumber, Room.class).setParameter("roomNumber", roomNumber).getSingleResult();
+            return dbConnection.createQuery(selectRoomNumber, Room.class).setParameter("roomNumber", roomNumber).getSingleResult();
         } catch (NoResultException e) {
-            room = null;
+            return null;
         }
-
-        return room;
     }
 }

@@ -1,22 +1,23 @@
 package br.com.sunsethotel.model;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
 @Entity
 @Table(name = "guests")
-public class Guest {
+public class Guest implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int guestId;
+    private Integer guestId;
     private String guestName;
     private String cpf;
     private LocalDate birthDate;
     private String nationality;
     private String phoneNumber;
 
-    @OneToMany (mappedBy = "guestName")
+    @OneToMany(mappedBy = "guestName")
     private List<Reservation> reservations;
 
     public Guest() {
@@ -30,7 +31,15 @@ public class Guest {
         this.phoneNumber = phoneNumber;
     }
 
-    public int getGuestId() {
+    public void addReservation(Reservation reservation) {
+        this.reservations.add(reservation);
+    }
+
+    public void removeReservation(Reservation reservation) {
+        this.reservations.remove(reservation);
+    }
+
+    public Integer getGuestId() {
         return guestId;
     }
 
@@ -52,6 +61,10 @@ public class Guest {
 
     public String getPhoneNumber() {
         return phoneNumber;
+    }
+
+    public List<Reservation> getGuestReservations() {
+        return reservations;
     }
 
     public void setGuestName(String guestName) {
