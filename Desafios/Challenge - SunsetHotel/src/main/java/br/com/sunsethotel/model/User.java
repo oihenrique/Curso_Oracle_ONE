@@ -17,7 +17,7 @@ public class User {
     private boolean administrator;
     private String cpf;
     private LocalDate birthDate;
-    private int acessCode;
+    private int accessCode;
     private String userPassword;
 
     /**
@@ -38,7 +38,7 @@ public class User {
         this.administrator = admin;
         this.cpf = cpf;
         this.birthDate = birthDate;
-        this.acessCode = new UserDao(dbConnection).generateAcessCode();
+        this.accessCode = new UserDao(dbConnection).generateAcessCode();
         this.userPassword = new UserDao(dbConnection).generateHashPassword(password);
     }
 
@@ -69,8 +69,8 @@ public class User {
         return birthDate;
     }
 
-    public int getAcessCode() {
-        return acessCode;
+    public int getAccessCode() {
+        return accessCode;
     }
 
     public String getUserPassword() {

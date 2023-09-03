@@ -18,7 +18,7 @@ public class UserDaoTest {
         //user.setEmail("user.mail@sunsethotel.com");
 
         userDao.updateUser(user, "", null, null, null, "henri123456");
-        System.out.println(userDao.authenticateUser(user, 19362, "h123456"));
+        System.out.println(userDao.authenticateUser(19362, "h123456"));
         userDao.deleteUser(user);
 
         for (User users : userDao.listAllUsers()) {
@@ -26,7 +26,7 @@ public class UserDaoTest {
         }
 
         for (User users : userDao.searchByName("Henrique")) {
-            System.out.println(users.getAcessCode());
+            System.out.println(users.getAccessCode());
         }
 
         em.getTransaction().begin();

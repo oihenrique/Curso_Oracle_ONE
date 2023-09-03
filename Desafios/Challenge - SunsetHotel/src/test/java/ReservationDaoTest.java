@@ -15,17 +15,17 @@ public class ReservationDaoTest {
         EntityManager em = JPAUtil.getEntityManager();
         ReservationDao reservationDao = new ReservationDao(em);
 
-//        Room room = new RoomDao(em).searchByRoomNumber(301);
-//        Room room1 = new RoomDao(em).searchByRoomNumber(302);
+        Room room = new RoomDao(em).searchByRoomNumber(301);
+        Room room1 = new RoomDao(em).searchByRoomNumber(302);
 
         Guest guest = new GuestDao(em).searchGuestByCpf("222-222-222-00");
         Guest guest1 = new GuestDao(em).searchGuestByCpf("222-222-222-02");
 
-//        Reservation reservation = new Reservation(guest, room, LocalDate.of(2023, 8, 26), LocalDate.of(2023, 8, 28), "Cartão");
-//        Reservation reservation1 = new Reservation(guest1, room1, LocalDate.of(2023, 8, 26), LocalDate.of(2023, 8, 28), "Cartão");
+        Reservation reservation = new Reservation(guest, room, LocalDate.of(2023, 8, 26), LocalDate.of(2023, 8, 28), "Cartão");
+        Reservation reservation1 = new Reservation(guest1, room1, LocalDate.of(2023, 8, 26), LocalDate.of(2023, 8, 28), "Cartão");
 
-//        reservationDao.registerReservation(reservation);
-//        reservationDao.registerReservation(reservation1);
+        reservationDao.registerReservation(reservation);
+        reservationDao.registerReservation(reservation1);
 
         List<Reservation> reservation2 = reservationDao.searchReservationsByGuest(guest);
 //        reservationDao.cancelReservation(reservation2.get(0));

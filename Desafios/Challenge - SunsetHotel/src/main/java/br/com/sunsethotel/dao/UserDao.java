@@ -1,5 +1,6 @@
 package br.com.sunsethotel.dao;
 
+import br.com.sunsethotel.Util.JPAUtil;
 import br.com.sunsethotel.model.User;
 import org.mindrot.jbcrypt.BCrypt;
 
@@ -77,42 +78,39 @@ public class UserDao {
         }
     }
 
-    public User searchByAcessCode(Integer acessCode) {
-        String selectAcessCode = "SELECT u FROM User u WHERE u.acessCode = :acessCode";
+    public User searchByAcessCode(Integer accessCode) {
+        String selectAccessCode = "SELECT u FROM User u WHERE u.accessCode = :accessCode";
 
         try {
-            return dbConnection.createQuery(selectAcessCode, User.class).setParameter("acessCode", acessCode).getSingleResult();
+            return dbConnection.createQuery(selectAccessCode, User.class).setParameter("accessCode", accessCode).getSingleResult();
         } catch (NoResultException e) {
             return null;
         }
     }
 
-    public boolean authenticateUser(User user, Integer acessCode, String password) {
-        if (user != null) {
-            String selectDBAcessCode = "SELECT u.acessCode FROM User u WHERE u.userId = :id";
-            Integer dbAcessCode = dbConnection.createQuery(selectDBAcessCode, Integer.class).setParameter("id", user.getUserId()).getSingleResult();
-
-            String selectDBPassword = "SELECT u.userPassword FROM User u WHERE u.userId = :id";
-            String hashedPassword = dbConnection.createQuery(selectDBPassword, String.class).setParameter("id", user.getUserId()).getSingleResult();
-
-            if (acessCode.equals(dbAcessCode)) {
-                return verifyPassword(password, hashedPassword);
-            }
+    public boolean authenticateUser(Integer accessCode, String password) {
+        try {
+            String selectHashedPassword = "SELECT u.userPassword FROM User u WHERE u.accessCode = :accessCode";
+            String hashedPassword = dbConnection.createQuery(selectHashedPassword, String.class).setParameter("accessCode", accessCode).getSingleResult();
+            System.out.println(hashedPassword);
+            return verifyPassword(password, hashedPassword);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return false;
         }
-        return false;
     }
 
     public int generateAcessCode() {
-        int acessCode = new Random().nextInt(99999);
+        int accessCode = new Random().nextInt(99999);
 
-        String selectDBAcessCodeQuery = "SELECT acessCode FROM User";
+        String selectDBAcessCodeQuery = "SELECT accessCode FROM User";
         List<Integer> dbAcessCodeList = dbConnection.createQuery(selectDBAcessCodeQuery, Integer.class).getResultList();
 
-        while (dbAcessCodeList.contains(acessCode)) {
-            acessCode = new Random().nextInt(99999);
+        while (dbAcessCodeList.contains(accessCode)) {
+            accessCode = new Random().nextInt(99999);
         }
 
-        return acessCode;
+        return accessCode;
     }
 
     public String generateHashPassword(String password) {
