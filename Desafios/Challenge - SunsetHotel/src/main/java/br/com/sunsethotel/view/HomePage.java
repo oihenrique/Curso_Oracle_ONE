@@ -37,9 +37,12 @@ public class HomePage extends javax.swing.JFrame {
     private void initComponents() {
 
         homePagePanel = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jbGuests = new javax.swing.JButton();
+        jbSearch = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
+        jbReservations = new javax.swing.JButton();
+        jbAdmin = new javax.swing.JButton();
+        jLogo = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -52,53 +55,103 @@ public class HomePage extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setMinimumSize(new java.awt.Dimension(900, 720));
         setName("homePage"); // NOI18N
+        setPreferredSize(new java.awt.Dimension(900, 720));
+        setResizable(false);
 
-        homePagePanel.setBackground(new java.awt.Color(88, 107, 166));
+        homePagePanel.setBackground(new java.awt.Color(253, 253, 253));
+        homePagePanel.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(255, 255, 255));
-        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/calendar.png"))); // NOI18N
-        jButton1.setText("Register reservation");
-        jButton1.setBorderPainted(false);
-        jButton1.setContentAreaFilled(false);
-        jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton1.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        jbGuests.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jbGuests.setForeground(new java.awt.Color(32, 32, 32));
+        jbGuests.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/person.png"))); // NOI18N
+        jbGuests.setText("Guests");
+        jbGuests.setBorderPainted(false);
+        jbGuests.setContentAreaFilled(false);
+        jbGuests.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbGuests.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
 
-        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jButton2.setForeground(new java.awt.Color(255, 255, 255));
-        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/searching-magnifying-glass.png"))); // NOI18N
-        jButton2.setText("Search");
-        jButton2.setBorderPainted(false);
-        jButton2.setContentAreaFilled(false);
-        jButton2.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jButton2.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jbSearch.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jbSearch.setForeground(new java.awt.Color(32, 32, 32));
+        jbSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/searching-magnifying-glass.png"))); // NOI18N
+        jbSearch.setText("Search");
+        jbSearch.setBorderPainted(false);
+        jbSearch.setContentAreaFilled(false);
+        jbSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbSearch.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        jbSearch.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jbSearchActionPerformed(evt);
             }
         });
+
+        jbReservations.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jbReservations.setForeground(new java.awt.Color(32, 32, 32));
+        jbReservations.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/calendar.png"))); // NOI18N
+        jbReservations.setText("Reservations");
+        jbReservations.setBorderPainted(false);
+        jbReservations.setContentAreaFilled(false);
+        jbReservations.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbReservations.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        jbReservations.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbReservationsActionPerformed(evt);
+            }
+        });
+
+        jbAdmin.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jbAdmin.setForeground(new java.awt.Color(32, 32, 32));
+        jbAdmin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/admin-tools.png"))); // NOI18N
+        jbAdmin.setText("Administration");
+        jbAdmin.setBorderPainted(false);
+        jbAdmin.setContentAreaFilled(false);
+        jbAdmin.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbAdmin.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        jbAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jbAdminActionPerformed(evt);
+            }
+        });
+
+        jLogo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo-180px.png"))); // NOI18N
 
         javax.swing.GroupLayout homePagePanelLayout = new javax.swing.GroupLayout(homePagePanel);
         homePagePanel.setLayout(homePagePanelLayout);
         homePagePanelLayout.setHorizontalGroup(
             homePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(homePagePanelLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(homePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbGuests, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbReservations, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(homePagePanelLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jLogo)
+                .addGap(40, 40, 40))
         );
         homePagePanelLayout.setVerticalGroup(
             homePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(homePagePanelLayout.createSequentialGroup()
-                .addGap(219, 219, 219)
+                .addGap(40, 40, 40)
+                .addComponent(jLogo)
+                .addGap(40, 40, 40)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jButton1)
-                .addGap(18, 18, 18)
-                .addComponent(jButton2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(jbGuests)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbReservations)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbSearch)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbAdmin)
+                .addContainerGap())
         );
 
+        jPanel1.setBackground(new java.awt.Color(246, 246, 246));
         jPanel1.setPreferredSize(new java.awt.Dimension(600, 720));
 
         jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
@@ -126,7 +179,7 @@ public class HomePage extends javax.swing.JFrame {
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
+                .addGap(30, 30, 30)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel9)
                     .addComponent(jLabel8)
@@ -137,7 +190,7 @@ public class HomePage extends javax.swing.JFrame {
                     .addComponent(jLabel3)
                     .addComponent(jLabel1)
                     .addComponent(jLabel2))
-                .addContainerGap(54, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -170,20 +223,28 @@ public class HomePage extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addComponent(homePagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 665, Short.MAX_VALUE))
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 630, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(homePagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(homePagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jbSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSearchActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jbSearchActionPerformed
+
+    private void jbReservationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbReservationsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbReservationsActionPerformed
+
+    private void jbAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAdminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jbAdminActionPerformed
 
     /**
      * @param args the command line arguments
@@ -223,8 +284,6 @@ public class HomePage extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel homePagePanel;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
@@ -234,7 +293,12 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel jLogo;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
+    private javax.swing.JButton jbAdmin;
+    private javax.swing.JButton jbGuests;
+    private javax.swing.JButton jbReservations;
+    private javax.swing.JButton jbSearch;
     // End of variables declaration//GEN-END:variables
 }
