@@ -11,9 +11,9 @@ public class GuestDaoTest {
         EntityManager em = JPAUtil.getEntityManager();
         GuestDao guestDao = new GuestDao(em);
 
-        Guest guest = new Guest("Fernado", "222-222-222-00", LocalDate.of(1989, 5, 13), "Brasileiro", "(11) 99999-9999");
-        Guest guest1 = new Guest("Fernado Noronha", "222-222-222-01", LocalDate.of(2000, 5, 13), "Brasileiro", "(11) 99999-9999");
-        Guest guest2 = new Guest("Carla", "222-222-222-02", LocalDate.of(1992, 6, 18), "Brasileira", "(11) 99999-9999");
+        Guest guest = new Guest("Fernado", "222-222-222-00", "Brasileiro", "(11) 99999-9999");
+        Guest guest1 = new Guest("Fernado Noronha", "222-222-222-01", "Brasileiro", "(11) 99999-9999");
+        Guest guest2 = new Guest("Carla", "222-222-222-02", "Brasileira", "(11) 99999-9999");
 
         guestDao.registerGuest(guest);
         guestDao.registerGuest(guest1);

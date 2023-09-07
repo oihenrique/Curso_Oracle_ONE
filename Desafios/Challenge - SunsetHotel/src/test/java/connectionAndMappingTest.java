@@ -4,14 +4,13 @@ import br.com.sunsethotel.model.Reservation;
 import br.com.sunsethotel.model.Room;
 
 import javax.persistence.EntityManager;
-import java.math.BigDecimal;
 import java.time.LocalDate;
 
 public class connectionAndMappingTest {
     public static void main(String[] args) {
         EntityManager em = JPAUtil.getEntityManager();
 
-        Guest henrizito = new Guest("Henrizito", "777.777.777-00", LocalDate.of(2000, 1, 26), "brasileiro", "(83) 99959-7989");
+        Guest henrizito = new Guest("Henrizito", "777.777.777-00", "brasileiro", "(83) 99959-7989");
 
         em.persist(henrizito);
 

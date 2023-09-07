@@ -1,6 +1,5 @@
 package br.com.sunsethotel.dao;
 
-import br.com.sunsethotel.Util.JPAUtil;
 import br.com.sunsethotel.model.User;
 import org.mindrot.jbcrypt.BCrypt;
 

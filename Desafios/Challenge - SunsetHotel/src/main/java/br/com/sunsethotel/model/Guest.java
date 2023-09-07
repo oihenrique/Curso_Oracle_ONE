@@ -23,10 +23,9 @@ public class Guest implements Serializable {
     public Guest() {
     }
 
-    public Guest(String name, String cpf, LocalDate birthDate, String nationality, String phoneNumber) {
+    public Guest(String name, String cpf, String nationality, String phoneNumber) {
         this.guestName = name;
         this.cpf = cpf;
-        this.birthDate = birthDate;
         this.nationality = nationality;
         this.phoneNumber = phoneNumber;
     }
