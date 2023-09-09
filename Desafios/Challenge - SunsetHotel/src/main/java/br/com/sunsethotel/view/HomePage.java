@@ -15,6 +15,8 @@ import br.com.sunsethotel.model.Room;
 import br.com.sunsethotel.model.User;
 import br.com.sunsethotel.view.guests.NewGuestWindow;
 import br.com.sunsethotel.view.guests.UpdateGuestInfo;
+import br.com.sunsethotel.view.rooms.NewRoomWindow;
+import br.com.sunsethotel.view.rooms.EditRoomWindow;
 
 import java.awt.*;
 import java.awt.event.WindowAdapter;
@@ -22,7 +24,10 @@ import java.awt.event.WindowEvent;
 import javax.persistence.EntityManager;
 import javax.swing.table.DefaultTableModel;
 import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 
 
 /**
@@ -87,13 +92,13 @@ public class HomePage extends javax.swing.JFrame {
         guestsArea = new javax.swing.JPanel();
         guestTableScroll = new javax.swing.JScrollPane();
         guestTable = new javax.swing.JTable();
-        newButton = new javax.swing.JButton();
-        editButton = new javax.swing.JButton();
-        deleteButton = new javax.swing.JButton();
+        newGuestButton = new javax.swing.JButton();
+        editGuestButton = new javax.swing.JButton();
+        deleteGuestButton = new javax.swing.JButton();
         guestTitleLabel = new javax.swing.JLabel();
         jtfSearchGuest = new javax.swing.JTextField();
-        jButton1 = new javax.swing.JButton();
-        jLabel1 = new javax.swing.JLabel();
+        jbSearchGuest = new javax.swing.JButton();
+        searchGuestLabel = new javax.swing.JLabel();
         reservationArea = new javax.swing.JPanel();
         guestTableScroll1 = new javax.swing.JScrollPane();
         reservationsTable = new javax.swing.JTable();
@@ -335,33 +340,33 @@ public class HomePage extends javax.swing.JFrame {
         });
         guestTableScroll.setViewportView(guestTable);
 
-        newButton.setText("New");
-        newButton.addActionListener(new java.awt.event.ActionListener() {
+        newGuestButton.setText("New");
+        newGuestButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                newButtonActionPerformed(evt);
+                newGuestButtonActionPerformed(evt);
             }
         });
 
-        editButton.setText("Edit");
-        editButton.addActionListener(new java.awt.event.ActionListener() {
+        editGuestButton.setText("Edit");
+        editGuestButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                editButtonActionPerformed(evt);
+                editGuestButtonActionPerformed(evt);
             }
         });
 
-        deleteButton.setText("Delete");
-        deleteButton.addActionListener(new java.awt.event.ActionListener() {
+        deleteGuestButton.setText("Delete");
+        deleteGuestButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                deleteButtonActionPerformed(evt);
+                deleteGuestButtonActionPerformed(evt);
             }
         });
 
         guestTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         guestTitleLabel.setText("Guests area");
 
-        jButton1.setText("search");
+        jbSearchGuest.setText("search");
 
-        jLabel1.setText("search:");
+        searchGuestLabel.setText("search:");
 
         javax.swing.GroupLayout guestsAreaLayout = new javax.swing.GroupLayout(guestsArea);
         guestsArea.setLayout(guestsAreaLayout);
@@ -379,22 +384,22 @@ public class HomePage extends javax.swing.JFrame {
                                 .addComponent(jtfSearchGuest, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addGroup(guestsAreaLayout.createSequentialGroup()
                                 .addGap(98, 98, 98)
-                                .addComponent(jLabel1)
+                                .addComponent(searchGuestLabel)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(newButton)
+                                .addComponent(newGuestButton)
                                 .addGap(89, 89, 89)
-                                .addComponent(editButton)))
+                                .addComponent(editGuestButton)))
                         .addGap(18, 18, 18)
                         .addGroup(guestsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jButton1)
-                            .addComponent(deleteButton)))
+                            .addComponent(jbSearchGuest)
+                            .addComponent(deleteGuestButton)))
                     .addGroup(guestsAreaLayout.createSequentialGroup()
                         .addGap(249, 249, 249)
                         .addComponent(guestTitleLabel)))
                 .addGap(2, 2, 2))
         );
 
-        guestsAreaLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {deleteButton, editButton, newButton});
+        guestsAreaLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {deleteGuestButton, editGuestButton, newGuestButton});
 
         guestsAreaLayout.setVerticalGroup(
             guestsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -403,14 +408,14 @@ public class HomePage extends javax.swing.JFrame {
                 .addComponent(guestTitleLabel)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addGroup(guestsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
-                    .addComponent(newButton)
-                    .addComponent(editButton)
-                    .addComponent(deleteButton))
+                    .addComponent(newGuestButton)
+                    .addComponent(editGuestButton)
+                    .addComponent(deleteGuestButton))
                 .addGap(27, 27, 27)
                 .addGroup(guestsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jtfSearchGuest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton1)
-                    .addComponent(jLabel1))
+                    .addComponent(jbSearchGuest)
+                    .addComponent(searchGuestLabel))
                 .addGap(41, 41, 41)
                 .addComponent(guestTableScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(62, 62, 62))
@@ -841,21 +846,12 @@ public class HomePage extends javax.swing.JFrame {
         guestTable.setModel(guestTableModel);
     }//GEN-LAST:event_jbGuestsActionPerformed
 
-    private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
+    private void newGuestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newGuestButtonActionPerformed
         NewGuestWindow addGuestWindow = new NewGuestWindow();
-        addGuestWindow.setVisible(true);
-        this.newButton.setEnabled(false);
+        showPopupWindow(addGuestWindow, newGuestButton);
+    }//GEN-LAST:event_newGuestButtonActionPerformed
 
-        // Adicione um WindowListener para ouvir o evento de fechamento
-        addGuestWindow.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                newButton.setEnabled(true);
-            }
-        });
-    }//GEN-LAST:event_newButtonActionPerformed
-
-    private void deleteButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteButtonActionPerformed
+    private void deleteGuestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteGuestButtonActionPerformed
         DefaultTableModel guestTableModel = (DefaultTableModel) this.guestTable.getModel();
 
         if (this.guestTable.getSelectedRowCount() == 1) {
@@ -870,9 +866,9 @@ public class HomePage extends javax.swing.JFrame {
         } else {
             JOptionPane.showMessageDialog(this, "Select one row to delete.");
         }
-    }//GEN-LAST:event_deleteButtonActionPerformed
+    }//GEN-LAST:event_deleteGuestButtonActionPerformed
 
-    private void editButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editButtonActionPerformed
+    private void editGuestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editGuestButtonActionPerformed
         DefaultTableModel guestTableModel = (DefaultTableModel) this.guestTable.getModel();
         if (this.guestTable.getSelectedRowCount() == 1) {
             GuestDao guestDao = new GuestDao(dbConnection);
@@ -881,21 +877,11 @@ public class HomePage extends javax.swing.JFrame {
             Guest guest = guestDao.searchGuestByCpf(guestCPF);
 
             UpdateGuestInfo editGuestWindow = new UpdateGuestInfo(guest);
-            editGuestWindow.setVisible(true);
-            this.editButton.setEnabled(false);
-
-            // Adicione um WindowListener para ouvir o evento de fechamento
-            editGuestWindow.addWindowListener(new WindowAdapter() {
-                @Override
-                public void windowClosed(WindowEvent e) {
-                    // A janela NewGuestWindow foi fechada, reative o botão
-                    editButton.setEnabled(true);
-                }
-            });
+            showPopupWindow(editGuestWindow, editGuestButton);
         } else {
-            JOptionPane.showMessageDialog(this, "Select one row to delete.");
+            JOptionPane.showMessageDialog(this, "Select one row to edit.");
         }
-    }//GEN-LAST:event_editButtonActionPerformed
+    }//GEN-LAST:event_editGuestButtonActionPerformed
 
     private void addReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addReservationButtonActionPerformed
         // TODO add your handling code here:
@@ -910,15 +896,35 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_deleteReservationButtonActionPerformed
 
     private void addRoomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRoomButtonActionPerformed
-        // TODO add your handling code here:
+        NewRoomWindow addRoomWindow = new NewRoomWindow();
+        showPopupWindow(addRoomWindow, addRoomButton);
     }//GEN-LAST:event_addRoomButtonActionPerformed
 
     private void editRoomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editRoomButtonActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel roomTableModel = (DefaultTableModel) this.roomsTable.getModel();
+        if (this.roomsTable.getSelectedRowCount() == 1) {
+            String roomNumber = roomTableModel.getValueAt(roomsTable.getSelectedRow(), 0).toString();
+            Room room = roomDao.searchByRoomNumber(Integer.valueOf(roomNumber));
+
+            EditRoomWindow editNewRoomWindow = new EditRoomWindow(room);
+            showPopupWindow(editNewRoomWindow, editRoomButton);
+        } else {
+            JOptionPane.showMessageDialog(this, "Select one row to edit.");
+        }
     }//GEN-LAST:event_editRoomButtonActionPerformed
 
     private void deleteRoomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteRoomButtonActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel roomTableModel = (DefaultTableModel) this.roomsTable.getModel();
+        if (this.roomsTable.getSelectedRowCount() == 1) {
+            String roomNumber = roomTableModel.getValueAt(roomsTable.getSelectedRow(), 0).toString();
+            Room room = roomDao.searchByRoomNumber(Integer.valueOf(roomNumber));
+
+            roomDao.deleteRoom(room);
+            dbConnection.getTransaction().begin();
+            dbConnection.getTransaction().commit();
+        } else {
+            JOptionPane.showMessageDialog(this, "Select one row to delete.");
+        }
     }//GEN-LAST:event_deleteRoomButtonActionPerformed
 
     private void addUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserButtonActionPerformed
@@ -997,6 +1003,18 @@ public class HomePage extends javax.swing.JFrame {
         }
     }
     
+    public void showPopupWindow(JFrame window, JButton button) {
+        window.setVisible(true);
+        button.setEnabled(false);
+
+        window.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                button.setEnabled(true);
+            }
+        });
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -1040,11 +1058,11 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JPanel adminArea;
     private javax.swing.JScrollPane adminTableScroll;
     private javax.swing.JPanel backgroundArea;
-    private javax.swing.JButton deleteButton;
+    private javax.swing.JButton deleteGuestButton;
     private javax.swing.JButton deleteReservationButton;
     private javax.swing.JButton deleteRoomButton;
     private javax.swing.JButton deleteUserButton;
-    private javax.swing.JButton editButton;
+    private javax.swing.JButton editGuestButton;
     private javax.swing.JButton editReservationButton;
     private javax.swing.JButton editRoomButton;
     private javax.swing.JButton editUserButton;
@@ -1055,8 +1073,6 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JPanel guestsArea;
     private javax.swing.JPanel homePagePanel;
     private javax.swing.JPanel homePageWelcome;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -1069,6 +1085,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JButton jbGuests;
     private javax.swing.JButton jbReservations;
     private javax.swing.JButton jbRooms;
+    private javax.swing.JButton jbSearchGuest;
     private javax.swing.JButton jbSearchReservation;
     private javax.swing.JButton jbSearchRooms;
     private javax.swing.JButton jbUserReservation;
@@ -1079,7 +1096,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JTextField jtfSearchReservation;
     private javax.swing.JTextField jtfSearchRooms;
     private javax.swing.JTextField jtfUserReservation;
-    private javax.swing.JButton newButton;
+    private javax.swing.JButton newGuestButton;
     private javax.swing.JPanel reservationArea;
     private javax.swing.JLabel reservationTitleLabel;
     private javax.swing.JTable reservationsTable;
@@ -1087,6 +1104,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JPanel roomsArea;
     private javax.swing.JTable roomsTable;
     private javax.swing.JLabel roomsTitleLabel;
+    private javax.swing.JLabel searchGuestLabel;
     private javax.swing.JLabel searchReservationLabel;
     private javax.swing.JLabel searchRoomsLabel;
     private javax.swing.JLabel searchUserLabel;

@@ -376,17 +376,17 @@
                                   </Group>
                                   <Group type="102" alignment="0" attributes="0">
                                       <EmptySpace min="-2" pref="98" max="-2" attributes="0"/>
-                                      <Component id="jLabel1" min="-2" max="-2" attributes="0"/>
+                                      <Component id="searchGuestLabel" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace max="-2" attributes="0"/>
-                                      <Component id="newButton" linkSize="2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="newGuestButton" linkSize="2" min="-2" max="-2" attributes="0"/>
                                       <EmptySpace min="-2" pref="89" max="-2" attributes="0"/>
-                                      <Component id="editButton" linkSize="2" min="-2" max="-2" attributes="0"/>
+                                      <Component id="editGuestButton" linkSize="2" min="-2" max="-2" attributes="0"/>
                                   </Group>
                               </Group>
                               <EmptySpace type="separate" max="-2" attributes="0"/>
                               <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="jButton1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="deleteButton" linkSize="2" min="-2" max="-2" attributes="0"/>
+                                  <Component id="jbSearchGuest" min="-2" max="-2" attributes="0"/>
+                                  <Component id="deleteGuestButton" linkSize="2" min="-2" max="-2" attributes="0"/>
                               </Group>
                           </Group>
                           <Group type="102" alignment="0" attributes="0">
@@ -405,15 +405,15 @@
                       <Component id="guestTitleLabel" min="-2" max="-2" attributes="0"/>
                       <EmptySpace pref="59" max="32767" attributes="0"/>
                       <Group type="103" groupAlignment="2" attributes="0">
-                          <Component id="newButton" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="editButton" alignment="2" min="-2" max="-2" attributes="0"/>
-                          <Component id="deleteButton" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="newGuestButton" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="editGuestButton" alignment="2" min="-2" max="-2" attributes="0"/>
+                          <Component id="deleteGuestButton" alignment="2" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="27" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="3" attributes="0">
                           <Component id="jtfSearchGuest" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jButton1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="jLabel1" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="jbSearchGuest" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="searchGuestLabel" alignment="3" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace min="-2" pref="41" max="-2" attributes="0"/>
                       <Component id="guestTableScroll" min="-2" max="-2" attributes="0"/>
@@ -477,28 +477,28 @@
                 </Component>
               </SubComponents>
             </Container>
-            <Component class="javax.swing.JButton" name="newButton">
+            <Component class="javax.swing.JButton" name="newGuestButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="New"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newButtonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="newGuestButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="editButton">
+            <Component class="javax.swing.JButton" name="editGuestButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Edit"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editButtonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="editGuestButtonActionPerformed"/>
               </Events>
             </Component>
-            <Component class="javax.swing.JButton" name="deleteButton">
+            <Component class="javax.swing.JButton" name="deleteGuestButton">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Delete"/>
               </Properties>
               <Events>
-                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteButtonActionPerformed"/>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteGuestButtonActionPerformed"/>
               </Events>
             </Component>
             <Component class="javax.swing.JLabel" name="guestTitleLabel">
@@ -511,12 +511,12 @@
             </Component>
             <Component class="javax.swing.JTextField" name="jtfSearchGuest">
             </Component>
-            <Component class="javax.swing.JButton" name="jButton1">
+            <Component class="javax.swing.JButton" name="jbSearchGuest">
               <Properties>
                 <Property name="text" type="java.lang.String" value="search"/>
               </Properties>
             </Component>
-            <Component class="javax.swing.JLabel" name="jLabel1">
+            <Component class="javax.swing.JLabel" name="searchGuestLabel">
               <Properties>
                 <Property name="text" type="java.lang.String" value="search:"/>
               </Properties>
