@@ -8,10 +8,10 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 
-
 @Entity
 @Table(name = "reservations")
 public class Reservation implements Serializable {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int reservationID;
@@ -67,9 +67,12 @@ public class Reservation implements Serializable {
         return paymentMethod;
     }
 
-
     public Guest getGuest() {
         return guestName;
+    }
+
+    public String getGuestName() {
+        return this.guestName.getGuestName();
     }
 
     public void setRoom(Integer number) {

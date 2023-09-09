@@ -6,7 +6,13 @@ package br.com.sunsethotel.view;
 
 import br.com.sunsethotel.Util.JPAUtil;
 import br.com.sunsethotel.dao.GuestDao;
+import br.com.sunsethotel.dao.ReservationDao;
+import br.com.sunsethotel.dao.RoomDao;
+import br.com.sunsethotel.dao.UserDao;
 import br.com.sunsethotel.model.Guest;
+import br.com.sunsethotel.model.Reservation;
+import br.com.sunsethotel.model.Room;
+import br.com.sunsethotel.model.User;
 import br.com.sunsethotel.view.guests.NewGuestWindow;
 import br.com.sunsethotel.view.guests.UpdateGuestInfo;
 
@@ -26,6 +32,9 @@ public class HomePage extends javax.swing.JFrame {
 
     private final EntityManager dbConnection;
     private final GuestDao guestDao;
+    private final ReservationDao reservationDao;
+    private final RoomDao roomDao;
+    private final UserDao userDao;
 
     /**
      * Creates new form homePage
@@ -33,6 +42,10 @@ public class HomePage extends javax.swing.JFrame {
     public HomePage() {
         this.dbConnection = JPAUtil.getEntityManager();
         this.guestDao = new GuestDao(dbConnection);
+        this.reservationDao = new ReservationDao(dbConnection);
+        this.roomDao = new RoomDao(dbConnection);
+        this.userDao = new UserDao(dbConnection);
+        
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 
         Dimension frameSize = this.getSize();
@@ -55,7 +68,7 @@ public class HomePage extends javax.swing.JFrame {
 
         homePagePanel = new javax.swing.JPanel();
         jbGuests = new javax.swing.JButton();
-        jbSearch = new javax.swing.JButton();
+        jbRooms = new javax.swing.JButton();
         jSeparator1 = new javax.swing.JSeparator();
         jbReservations = new javax.swing.JButton();
         jbAdmin = new javax.swing.JButton();
@@ -78,6 +91,39 @@ public class HomePage extends javax.swing.JFrame {
         editButton = new javax.swing.JButton();
         deleteButton = new javax.swing.JButton();
         guestTitleLabel = new javax.swing.JLabel();
+        jtfSearchGuest = new javax.swing.JTextField();
+        jButton1 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
+        reservationArea = new javax.swing.JPanel();
+        guestTableScroll1 = new javax.swing.JScrollPane();
+        reservationsTable = new javax.swing.JTable();
+        addReservationButton = new javax.swing.JButton();
+        editReservationButton = new javax.swing.JButton();
+        deleteReservationButton = new javax.swing.JButton();
+        reservationTitleLabel = new javax.swing.JLabel();
+        jtfSearchReservation = new javax.swing.JTextField();
+        jbSearchReservation = new javax.swing.JButton();
+        searchReservationLabel = new javax.swing.JLabel();
+        roomsArea = new javax.swing.JPanel();
+        roomTableScroll = new javax.swing.JScrollPane();
+        roomsTable = new javax.swing.JTable();
+        addRoomButton = new javax.swing.JButton();
+        editRoomButton = new javax.swing.JButton();
+        deleteRoomButton = new javax.swing.JButton();
+        roomsTitleLabel = new javax.swing.JLabel();
+        jtfSearchRooms = new javax.swing.JTextField();
+        jbSearchRooms = new javax.swing.JButton();
+        searchRoomsLabel = new javax.swing.JLabel();
+        adminArea = new javax.swing.JPanel();
+        adminTableScroll = new javax.swing.JScrollPane();
+        usersTable = new javax.swing.JTable();
+        addUserButton = new javax.swing.JButton();
+        editUserButton = new javax.swing.JButton();
+        deleteUserButton = new javax.swing.JButton();
+        userTitleLabel = new javax.swing.JLabel();
+        jtfUserReservation = new javax.swing.JTextField();
+        jbUserReservation = new javax.swing.JButton();
+        searchUserLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Homepage - Sunset Hotel");
@@ -109,17 +155,17 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
 
-        jbSearch.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
-        jbSearch.setForeground(new java.awt.Color(32, 32, 32));
-        jbSearch.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/searching-magnifying-glass.png"))); // NOI18N
-        jbSearch.setText("Search");
-        jbSearch.setBorderPainted(false);
-        jbSearch.setContentAreaFilled(false);
-        jbSearch.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        jbSearch.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
-        jbSearch.addActionListener(new java.awt.event.ActionListener() {
+        jbRooms.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
+        jbRooms.setForeground(new java.awt.Color(32, 32, 32));
+        jbRooms.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/searching-magnifying-glass.png"))); // NOI18N
+        jbRooms.setText("Rooms");
+        jbRooms.setBorderPainted(false);
+        jbRooms.setContentAreaFilled(false);
+        jbRooms.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jbRooms.setHorizontalAlignment(javax.swing.SwingConstants.LEADING);
+        jbRooms.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jbSearchActionPerformed(evt);
+                jbRoomsActionPerformed(evt);
             }
         });
 
@@ -155,8 +201,38 @@ public class HomePage extends javax.swing.JFrame {
 
         javax.swing.GroupLayout homePagePanelLayout = new javax.swing.GroupLayout(homePagePanel);
         homePagePanel.setLayout(homePagePanelLayout);
-        homePagePanelLayout.setHorizontalGroup(homePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING).addGroup(homePagePanelLayout.createSequentialGroup().addGap(6, 6, 6).addGroup(homePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(jbReservations, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(jbSearch, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(jbAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(jbGuests, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))).addGroup(homePagePanelLayout.createSequentialGroup().addGap(36, 36, 36).addComponent(jLogo).addGap(40, 40, 40)));
-        homePagePanelLayout.setVerticalGroup(homePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(homePagePanelLayout.createSequentialGroup().addGap(40, 40, 40).addComponent(jLogo).addGap(40, 40, 40).addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jbGuests).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jbReservations).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jbSearch).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jbAdmin).addContainerGap()));
+        homePagePanelLayout.setHorizontalGroup(
+            homePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jSeparator1, javax.swing.GroupLayout.Alignment.TRAILING)
+            .addGroup(homePagePanelLayout.createSequentialGroup()
+                .addGap(6, 6, 6)
+                .addGroup(homePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jbReservations, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbRooms, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbAdmin, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbGuests, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+            .addGroup(homePagePanelLayout.createSequentialGroup()
+                .addGap(36, 36, 36)
+                .addComponent(jLogo)
+                .addGap(40, 40, 40))
+        );
+        homePagePanelLayout.setVerticalGroup(
+            homePagePanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(homePagePanelLayout.createSequentialGroup()
+                .addGap(40, 40, 40)
+                .addComponent(jLogo)
+                .addGap(40, 40, 40)
+                .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbGuests)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbReservations)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbRooms)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jbAdmin)
+                .addContainerGap())
+        );
 
         backgroundArea.setMinimumSize(new java.awt.Dimension(630, 720));
         backgroundArea.setPreferredSize(new java.awt.Dimension(630, 720));
@@ -188,8 +264,45 @@ public class HomePage extends javax.swing.JFrame {
 
         javax.swing.GroupLayout homePageWelcomeLayout = new javax.swing.GroupLayout(homePageWelcome);
         homePageWelcome.setLayout(homePageWelcomeLayout);
-        homePageWelcomeLayout.setHorizontalGroup(homePageWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(homePageWelcomeLayout.createSequentialGroup().addGap(30, 30, 30).addGroup(homePageWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(jLabel9).addComponent(jLabel8).addComponent(jLabel7).addComponent(jLabel6).addComponent(jLabel5).addComponent(jLabel4).addComponent(jlWelcomeTitle).addComponent(jlTitle).addComponent(jlTodayDate)).addGap(37, 37, 37)));
-        homePageWelcomeLayout.setVerticalGroup(homePageWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(homePageWelcomeLayout.createSequentialGroup().addGap(100, 100, 100).addComponent(jlTitle).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jlTodayDate).addGap(82, 82, 82).addComponent(jlWelcomeTitle).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jLabel4).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED).addComponent(jLabel5).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jLabel6).addGap(18, 18, 18).addComponent(jLabel7).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jLabel8).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jLabel9).addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)));
+        homePageWelcomeLayout.setHorizontalGroup(
+            homePageWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(homePageWelcomeLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addGroup(homePageWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel8)
+                    .addComponent(jLabel7)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel5)
+                    .addComponent(jLabel4)
+                    .addComponent(jlWelcomeTitle)
+                    .addComponent(jlTitle)
+                    .addComponent(jlTodayDate))
+                .addGap(37, 37, 37))
+        );
+        homePageWelcomeLayout.setVerticalGroup(
+            homePageWelcomeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(homePageWelcomeLayout.createSequentialGroup()
+                .addGap(100, 100, 100)
+                .addComponent(jlTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlTodayDate)
+                .addGap(82, 82, 82)
+                .addComponent(jlWelcomeTitle)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel4)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jLabel5)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel6)
+                .addGap(18, 18, 18)
+                .addComponent(jLabel7)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel8)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel9)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+        );
 
         backgroundArea.add(homePageWelcome, "welcomeArea");
 
@@ -197,18 +310,27 @@ public class HomePage extends javax.swing.JFrame {
         guestsArea.setMinimumSize(new java.awt.Dimension(630, 720));
         guestsArea.setPreferredSize(new java.awt.Dimension(630, 720));
 
-        guestTable.setModel(new javax.swing.table.DefaultTableModel(new Object[][]{
+        guestTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
 
-        }, new String[]{"Name", "Nationality", "CPF", "Phone Number", "Birth date"}) {
-            Class[] types = new Class[]{java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class};
-            boolean[] canEdit = new boolean[]{false, false, false, false, false};
+            },
+            new String [] {
+                "Name", "Nationality", "CPF", "Phone Number", "Birth date"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false
+            };
 
             public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
+                return types [columnIndex];
             }
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
-                return canEdit[columnIndex];
+                return canEdit [columnIndex];
             }
         });
         guestTableScroll.setViewportView(guestTable);
@@ -237,34 +359,466 @@ public class HomePage extends javax.swing.JFrame {
         guestTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
         guestTitleLabel.setText("Guests area");
 
+        jButton1.setText("search");
+
+        jLabel1.setText("search:");
+
         javax.swing.GroupLayout guestsAreaLayout = new javax.swing.GroupLayout(guestsArea);
         guestsArea.setLayout(guestsAreaLayout);
-        guestsAreaLayout.setHorizontalGroup(guestsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(guestsAreaLayout.createSequentialGroup().addContainerGap().addGroup(guestsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(javax.swing.GroupLayout.Alignment.TRAILING, guestsAreaLayout.createSequentialGroup().addGap(0, 0, Short.MAX_VALUE).addComponent(newButton, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(editButton, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(deleteButton, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE).addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)).addGroup(guestsAreaLayout.createSequentialGroup().addComponent(guestTableScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE).addContainerGap(16, Short.MAX_VALUE)).addGroup(guestsAreaLayout.createSequentialGroup().addComponent(guestTitleLabel).addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))));
+        guestsAreaLayout.setHorizontalGroup(
+            guestsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(guestsAreaLayout.createSequentialGroup()
+                .addGroup(guestsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(guestsAreaLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(guestTableScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(guestsAreaLayout.createSequentialGroup()
+                        .addGroup(guestsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(guestsAreaLayout.createSequentialGroup()
+                                .addGap(141, 141, 141)
+                                .addComponent(jtfSearchGuest, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(guestsAreaLayout.createSequentialGroup()
+                                .addGap(98, 98, 98)
+                                .addComponent(jLabel1)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(newButton)
+                                .addGap(89, 89, 89)
+                                .addComponent(editButton)))
+                        .addGap(18, 18, 18)
+                        .addGroup(guestsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(jButton1)
+                            .addComponent(deleteButton)))
+                    .addGroup(guestsAreaLayout.createSequentialGroup()
+                        .addGap(249, 249, 249)
+                        .addComponent(guestTitleLabel)))
+                .addGap(2, 2, 2))
+        );
 
-        guestsAreaLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[]{deleteButton, editButton, newButton});
+        guestsAreaLayout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {deleteButton, editButton, newButton});
 
-        guestsAreaLayout.setVerticalGroup(guestsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(javax.swing.GroupLayout.Alignment.TRAILING, guestsAreaLayout.createSequentialGroup().addGap(38, 38, 38).addComponent(guestTitleLabel).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 105, Short.MAX_VALUE).addGroup(guestsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE).addComponent(newButton).addComponent(editButton).addComponent(deleteButton)).addGap(34, 34, 34).addComponent(guestTableScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addGap(62, 62, 62)));
+        guestsAreaLayout.setVerticalGroup(
+            guestsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, guestsAreaLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(guestTitleLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addGroup(guestsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(newButton)
+                    .addComponent(editButton)
+                    .addComponent(deleteButton))
+                .addGap(27, 27, 27)
+                .addGroup(guestsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfSearchGuest, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jButton1)
+                    .addComponent(jLabel1))
+                .addGap(41, 41, 41)
+                .addComponent(guestTableScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
+        );
 
         backgroundArea.add(guestsArea, "guestArea");
 
+        reservationArea.setBackground(new java.awt.Color(246, 246, 246));
+        reservationArea.setMinimumSize(new java.awt.Dimension(630, 720));
+
+        reservationsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "Room", "Reservation date", "Expiration date", "Value", "Payment method"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        guestTableScroll1.setViewportView(reservationsTable);
+
+        addReservationButton.setText("New");
+        addReservationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addReservationButtonActionPerformed(evt);
+            }
+        });
+
+        editReservationButton.setText("Edit");
+        editReservationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editReservationButtonActionPerformed(evt);
+            }
+        });
+
+        deleteReservationButton.setText("Delete");
+        deleteReservationButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteReservationButtonActionPerformed(evt);
+            }
+        });
+
+        reservationTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        reservationTitleLabel.setText("Reservations");
+
+        jbSearchReservation.setText("search");
+
+        searchReservationLabel.setText("search:");
+
+        javax.swing.GroupLayout reservationAreaLayout = new javax.swing.GroupLayout(reservationArea);
+        reservationArea.setLayout(reservationAreaLayout);
+        reservationAreaLayout.setHorizontalGroup(
+            reservationAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(reservationAreaLayout.createSequentialGroup()
+                .addGroup(reservationAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(reservationAreaLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(guestTableScroll1, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(reservationAreaLayout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(searchReservationLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addReservationButton)
+                        .addGap(89, 89, 89)
+                        .addComponent(editReservationButton)
+                        .addGap(100, 100, 100)
+                        .addComponent(deleteReservationButton))
+                    .addGroup(reservationAreaLayout.createSequentialGroup()
+                        .addGap(141, 141, 141)
+                        .addComponent(jtfSearchReservation, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbSearchReservation))
+                    .addGroup(reservationAreaLayout.createSequentialGroup()
+                        .addGap(236, 236, 236)
+                        .addComponent(reservationTitleLabel)))
+                .addGap(16, 16, 16))
+        );
+        reservationAreaLayout.setVerticalGroup(
+            reservationAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reservationAreaLayout.createSequentialGroup()
+                .addGap(28, 28, 28)
+                .addComponent(reservationTitleLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addGroup(reservationAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(addReservationButton)
+                    .addComponent(editReservationButton)
+                    .addComponent(deleteReservationButton))
+                .addGap(27, 27, 27)
+                .addGroup(reservationAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfSearchReservation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbSearchReservation)
+                    .addComponent(searchReservationLabel))
+                .addGap(41, 41, 41)
+                .addComponent(guestTableScroll1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
+        );
+
+        backgroundArea.add(reservationArea, "guestArea");
+
+        roomsArea.setBackground(new java.awt.Color(246, 246, 246));
+        roomsArea.setMinimumSize(new java.awt.Dimension(630, 720));
+
+        roomsTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Room number", "Room type", "Availability"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        roomTableScroll.setViewportView(roomsTable);
+
+        addRoomButton.setText("New");
+        addRoomButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addRoomButtonActionPerformed(evt);
+            }
+        });
+
+        editRoomButton.setText("Edit");
+        editRoomButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editRoomButtonActionPerformed(evt);
+            }
+        });
+
+        deleteRoomButton.setText("Delete");
+        deleteRoomButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteRoomButtonActionPerformed(evt);
+            }
+        });
+
+        roomsTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        roomsTitleLabel.setText("Rooms");
+
+        jbSearchRooms.setText("search");
+
+        searchRoomsLabel.setText("search:");
+
+        javax.swing.GroupLayout roomsAreaLayout = new javax.swing.GroupLayout(roomsArea);
+        roomsArea.setLayout(roomsAreaLayout);
+        roomsAreaLayout.setHorizontalGroup(
+            roomsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(roomsAreaLayout.createSequentialGroup()
+                .addGroup(roomsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(roomsAreaLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(roomTableScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(roomsAreaLayout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addComponent(searchRoomsLabel)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(addRoomButton)
+                        .addGap(89, 89, 89)
+                        .addComponent(editRoomButton)
+                        .addGap(100, 100, 100)
+                        .addComponent(deleteRoomButton))
+                    .addGroup(roomsAreaLayout.createSequentialGroup()
+                        .addGap(141, 141, 141)
+                        .addComponent(jtfSearchRooms, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbSearchRooms))
+                    .addGroup(roomsAreaLayout.createSequentialGroup()
+                        .addGap(269, 269, 269)
+                        .addComponent(roomsTitleLabel)))
+                .addGap(16, 16, 16))
+        );
+        roomsAreaLayout.setVerticalGroup(
+            roomsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, roomsAreaLayout.createSequentialGroup()
+                .addGap(30, 30, 30)
+                .addComponent(roomsTitleLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 57, Short.MAX_VALUE)
+                .addGroup(roomsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(addRoomButton)
+                    .addComponent(editRoomButton)
+                    .addComponent(deleteRoomButton))
+                .addGap(27, 27, 27)
+                .addGroup(roomsAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfSearchRooms, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbSearchRooms)
+                    .addComponent(searchRoomsLabel))
+                .addGap(41, 41, 41)
+                .addComponent(roomTableScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
+        );
+
+        backgroundArea.add(roomsArea, "guestArea");
+
+        adminArea.setBackground(new java.awt.Color(246, 246, 246));
+        adminArea.setMinimumSize(new java.awt.Dimension(630, 720));
+
+        usersTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Name", "E-mail", "CPF", "Birth date", "Administrator"
+            }
+        ) {
+            Class[] types = new Class [] {
+                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+            };
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, true
+            };
+
+            public Class getColumnClass(int columnIndex) {
+                return types [columnIndex];
+            }
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        adminTableScroll.setViewportView(usersTable);
+
+        addUserButton.setText("New");
+        addUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addUserButtonActionPerformed(evt);
+            }
+        });
+
+        editUserButton.setText("Edit");
+        editUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                editUserButtonActionPerformed(evt);
+            }
+        });
+
+        deleteUserButton.setText("Delete");
+        deleteUserButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                deleteUserButtonActionPerformed(evt);
+            }
+        });
+
+        userTitleLabel.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        userTitleLabel.setText("Users");
+
+        jbUserReservation.setText("search");
+
+        searchUserLabel.setText("search:");
+
+        javax.swing.GroupLayout adminAreaLayout = new javax.swing.GroupLayout(adminArea);
+        adminArea.setLayout(adminAreaLayout);
+        adminAreaLayout.setHorizontalGroup(
+            adminAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(adminAreaLayout.createSequentialGroup()
+                .addGroup(adminAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(adminAreaLayout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(adminTableScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(adminAreaLayout.createSequentialGroup()
+                        .addGap(141, 141, 141)
+                        .addComponent(jtfUserReservation, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jbUserReservation))
+                    .addGroup(adminAreaLayout.createSequentialGroup()
+                        .addGap(98, 98, 98)
+                        .addGroup(adminAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(userTitleLabel)
+                            .addGroup(adminAreaLayout.createSequentialGroup()
+                                .addComponent(searchUserLabel)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(addUserButton)
+                                .addGap(89, 89, 89)
+                                .addComponent(editUserButton)))
+                        .addGap(100, 100, 100)
+                        .addComponent(deleteUserButton)))
+                .addGap(16, 16, 16))
+        );
+        adminAreaLayout.setVerticalGroup(
+            adminAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, adminAreaLayout.createSequentialGroup()
+                .addGap(31, 31, 31)
+                .addComponent(userTitleLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 56, Short.MAX_VALUE)
+                .addGroup(adminAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
+                    .addComponent(addUserButton)
+                    .addComponent(editUserButton)
+                    .addComponent(deleteUserButton))
+                .addGap(27, 27, 27)
+                .addGroup(adminAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jtfUserReservation, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbUserReservation)
+                    .addComponent(searchUserLabel))
+                .addGap(41, 41, 41)
+                .addComponent(adminTableScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(62, 62, 62))
+        );
+
+        backgroundArea.add(adminArea, "guestArea");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(layout.createSequentialGroup().addComponent(homePagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(backgroundArea, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE)));
-        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(homePagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE).addComponent(backgroundArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(homePagePanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(backgroundArea, javax.swing.GroupLayout.DEFAULT_SIZE, 644, Short.MAX_VALUE))
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(homePagePanel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(backgroundArea, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jbSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbSearchActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jbSearchActionPerformed
+    private void jbRoomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRoomsActionPerformed
+        DefaultTableModel roomsTableModel = (DefaultTableModel) this.roomsTable.getModel();
+        roomsTableModel.setRowCount(0);
+        
+        this.homePageWelcome.setVisible(false);
+        enableRoomArea(true);
+        
+        List<Room> rooms = roomDao.listRooms();
+        
+        for (Room room : rooms) {
+            Object[] rowData = {
+                room.getRoomNumber(),
+                room.getRoomType(),
+                room.isRoomAvailability()
+            };
+            roomsTableModel.addRow(rowData);
+        }
+        
+        roomsTable.setModel(roomsTableModel);
+    }//GEN-LAST:event_jbRoomsActionPerformed
 
     private void jbReservationsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbReservationsActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel reservationsTableModel = (DefaultTableModel) this.reservationsTable.getModel();
+        reservationsTableModel.setRowCount(0);
+        
+        this.homePageWelcome.setVisible(false);
+        enableReservationArea(true);
+        
+        List<Reservation> reservations = reservationDao.listAllReservations();
+        
+        for (Reservation reservation : reservations) {
+            Object[] rowData = {
+                reservation.getGuestName(), 
+                reservation.getRoomNumber(), 
+                reservation.getReservationDate(), 
+                reservation.getExpirationDate(), 
+                reservation.getReservationValue(), 
+                reservation.getPaymentMethod()};
+            reservationsTableModel.addRow(rowData);
+        }
+        
+        reservationsTable.setModel(reservationsTableModel);
     }//GEN-LAST:event_jbReservationsActionPerformed
 
     private void jbAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbAdminActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel usersTableModel = (DefaultTableModel) this.usersTable.getModel();
+        usersTableModel.setRowCount(0);
+        
+        this.homePageWelcome.setVisible(false);
+        enableAdminArea(true);
+        
+        List<User> users = userDao.listAllUsers();
+        
+        for (User user : users) {
+            Object[] rowData = {
+                user.getUserName(),
+                user.getEmail(),
+                user.getCpf(),
+                user.getBirthDate(),
+                user.isAdministrator()
+            };
+            usersTableModel.addRow(rowData);
+        }
+        
+        usersTable.setModel(usersTableModel);
     }//GEN-LAST:event_jbAdminActionPerformed
 
     private void formComponentHidden(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_formComponentHidden
@@ -272,11 +826,12 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_formComponentHidden
 
     private void jbGuestsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbGuestsActionPerformed
-        System.out.println("click");
-        this.homePageWelcome.setVisible(false);
-        List<Guest> guests = guestDao.listAllGuests();
-
         DefaultTableModel guestTableModel = (DefaultTableModel) this.guestTable.getModel();
+        guestTableModel.setRowCount(0);
+        
+        this.homePageWelcome.setVisible(false);
+        enableGuestArea(true);
+        List<Guest> guests = guestDao.listAllGuests();
 
         for (Guest guest : guests) {
             Object[] rowData = {guest.getGuestName(), guest.getNationality(), guest.getCpf(), guest.getPhoneNumber(), guest.getBirthDate()};
@@ -284,7 +839,6 @@ public class HomePage extends javax.swing.JFrame {
         }
 
         guestTable.setModel(guestTableModel);
-        this.guestsArea.setVisible(true);
     }//GEN-LAST:event_jbGuestsActionPerformed
 
     private void newButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_newButtonActionPerformed
@@ -296,7 +850,6 @@ public class HomePage extends javax.swing.JFrame {
         addGuestWindow.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
-                // A janela NewGuestWindow foi fechada, reative o botão
                 newButton.setEnabled(true);
             }
         });
@@ -344,6 +897,106 @@ public class HomePage extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_editButtonActionPerformed
 
+    private void addReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addReservationButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addReservationButtonActionPerformed
+
+    private void editReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editReservationButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editReservationButtonActionPerformed
+
+    private void deleteReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteReservationButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteReservationButtonActionPerformed
+
+    private void addRoomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRoomButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addRoomButtonActionPerformed
+
+    private void editRoomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editRoomButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editRoomButtonActionPerformed
+
+    private void deleteRoomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteRoomButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteRoomButtonActionPerformed
+
+    private void addUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_addUserButtonActionPerformed
+
+    private void editUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editUserButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_editUserButtonActionPerformed
+
+    private void deleteUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserButtonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_deleteUserButtonActionPerformed
+
+    public void enableGuestArea(boolean enabled){
+        jbGuests.setEnabled(!enabled);
+        this.guestsArea.setVisible(enabled);
+        
+        if (!jbReservations.isEnabled()) {
+            jbReservations.setEnabled(true);
+            enableReservationArea(!enabled);
+        } else if (!jbAdmin.isEnabled()) {
+            jbAdmin.setEnabled(true);
+            //jbAdmin.setVisible(!enabled);
+        } else if (!jbRooms.isEnabled()) {
+            jbRooms.setEnabled(true);
+            //jbRooms.setVisible(!enabled);
+        }
+    }
+    
+    public void enableReservationArea(boolean enabled){
+        jbReservations.setEnabled(!enabled);
+        this.reservationArea.setVisible(enabled);
+        
+        if (!jbGuests.isEnabled()) {
+            jbGuests.setEnabled(true);
+            enableGuestArea(!enabled);
+        } else if (!jbAdmin.isEnabled()) {
+            jbAdmin.setEnabled(true);
+            enableAdminArea(!enabled);
+        } else if (!jbRooms.isEnabled()) {
+            jbRooms.setEnabled(true);
+            enableRoomArea(!enabled);
+        }
+    }
+    
+    public void enableRoomArea(boolean enabled){
+        jbRooms.setEnabled(!enabled);
+        this.roomsArea.setVisible(enabled);
+        
+        if (!jbGuests.isEnabled()) {
+            jbGuests.setEnabled(true);
+            enableGuestArea(!enabled);
+        } else if (!jbAdmin.isEnabled()) {
+            jbAdmin.setEnabled(true);
+            enableAdminArea(!enabled);
+        } else if (!jbReservations.isEnabled()) {
+            jbReservations.setEnabled(true);
+            enableReservationArea(!enabled);
+        }
+    }
+    
+    public void enableAdminArea(boolean enabled){
+        jbAdmin.setEnabled(!enabled);
+        this.adminArea.setVisible(enabled);
+        
+        if (!jbGuests.isEnabled()) {
+            jbGuests.setEnabled(true);
+            enableGuestArea(!enabled);
+        } else if (!jbRooms.isEnabled()) {
+            jbRooms.setEnabled(true);
+            enableRoomArea(!enabled);
+        } else if (!jbReservations.isEnabled()) {
+            jbReservations.setEnabled(true);
+            enableReservationArea(!enabled);
+        }
+    }
+    
     /**
      * @param args the command line arguments
      */
@@ -381,15 +1034,29 @@ public class HomePage extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addReservationButton;
+    private javax.swing.JButton addRoomButton;
+    private javax.swing.JButton addUserButton;
+    private javax.swing.JPanel adminArea;
+    private javax.swing.JScrollPane adminTableScroll;
     private javax.swing.JPanel backgroundArea;
     private javax.swing.JButton deleteButton;
+    private javax.swing.JButton deleteReservationButton;
+    private javax.swing.JButton deleteRoomButton;
+    private javax.swing.JButton deleteUserButton;
     private javax.swing.JButton editButton;
+    private javax.swing.JButton editReservationButton;
+    private javax.swing.JButton editRoomButton;
+    private javax.swing.JButton editUserButton;
     private javax.swing.JTable guestTable;
     private javax.swing.JScrollPane guestTableScroll;
+    private javax.swing.JScrollPane guestTableScroll1;
     private javax.swing.JLabel guestTitleLabel;
     private javax.swing.JPanel guestsArea;
     private javax.swing.JPanel homePagePanel;
     private javax.swing.JPanel homePageWelcome;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -401,10 +1068,29 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JButton jbAdmin;
     private javax.swing.JButton jbGuests;
     private javax.swing.JButton jbReservations;
-    private javax.swing.JButton jbSearch;
+    private javax.swing.JButton jbRooms;
+    private javax.swing.JButton jbSearchReservation;
+    private javax.swing.JButton jbSearchRooms;
+    private javax.swing.JButton jbUserReservation;
     private javax.swing.JLabel jlTitle;
     private javax.swing.JLabel jlTodayDate;
     private javax.swing.JLabel jlWelcomeTitle;
+    private javax.swing.JTextField jtfSearchGuest;
+    private javax.swing.JTextField jtfSearchReservation;
+    private javax.swing.JTextField jtfSearchRooms;
+    private javax.swing.JTextField jtfUserReservation;
     private javax.swing.JButton newButton;
+    private javax.swing.JPanel reservationArea;
+    private javax.swing.JLabel reservationTitleLabel;
+    private javax.swing.JTable reservationsTable;
+    private javax.swing.JScrollPane roomTableScroll;
+    private javax.swing.JPanel roomsArea;
+    private javax.swing.JTable roomsTable;
+    private javax.swing.JLabel roomsTitleLabel;
+    private javax.swing.JLabel searchReservationLabel;
+    private javax.swing.JLabel searchRoomsLabel;
+    private javax.swing.JLabel searchUserLabel;
+    private javax.swing.JLabel userTitleLabel;
+    private javax.swing.JTable usersTable;
     // End of variables declaration//GEN-END:variables
 }
