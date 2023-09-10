@@ -57,6 +57,15 @@ public class RoomDao {
             return Collections.emptyList();
         }
     }
+    
+    public List<Room> listAvailableRooms() {
+        String selectAllRooms = "SELECT r FROM Room r WHERE r.roomAvailability = 1";
+        try {
+            return dbConnection.createQuery(selectAllRooms, Room.class).getResultList();
+        } catch (NoResultException e) {
+            return Collections.emptyList();
+        }
+    }
 
     public Room searchByRoomNumber(Integer roomNumber) {
         String selectRoomNumber = "SELECT r FROM Room r WHERE r.roomNumber = :roomNumber";

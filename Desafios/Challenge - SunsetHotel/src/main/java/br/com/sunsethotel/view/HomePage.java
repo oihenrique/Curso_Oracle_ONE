@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
- */
 package br.com.sunsethotel.view;
 
 import br.com.sunsethotel.Util.JPAUtil;
@@ -13,12 +9,15 @@ import br.com.sunsethotel.model.Guest;
 import br.com.sunsethotel.model.Reservation;
 import br.com.sunsethotel.model.Room;
 import br.com.sunsethotel.model.User;
+import br.com.sunsethotel.view.admin.EditUserWindow;
+import br.com.sunsethotel.view.admin.NewUserWindow;
 import br.com.sunsethotel.view.guests.NewGuestWindow;
 import br.com.sunsethotel.view.guests.UpdateGuestInfo;
+import br.com.sunsethotel.view.reservations.EditReservationWindow;
+import br.com.sunsethotel.view.reservations.NewReservationWindow;
 import br.com.sunsethotel.view.rooms.NewRoomWindow;
 import br.com.sunsethotel.view.rooms.EditRoomWindow;
 
-import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import javax.persistence.EntityManager;
@@ -27,7 +26,6 @@ import java.util.List;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
-import javax.swing.JPanel;
 
 
 /**
@@ -51,14 +49,6 @@ public class HomePage extends javax.swing.JFrame {
         this.roomDao = new RoomDao(dbConnection);
         this.userDao = new UserDao(dbConnection);
         
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
-        Dimension frameSize = this.getSize();
-
-        int x = (screenSize.width - frameSize.width) / 4;
-        int y = (screenSize.height - frameSize.height) / 6;
-
-        this.setLocation(x, y);
         initComponents();
     }
 
@@ -100,7 +90,7 @@ public class HomePage extends javax.swing.JFrame {
         jbSearchGuest = new javax.swing.JButton();
         searchGuestLabel = new javax.swing.JLabel();
         reservationArea = new javax.swing.JPanel();
-        guestTableScroll1 = new javax.swing.JScrollPane();
+        reservationTableScroll = new javax.swing.JScrollPane();
         reservationsTable = new javax.swing.JTable();
         addReservationButton = new javax.swing.JButton();
         editReservationButton = new javax.swing.JButton();
@@ -131,7 +121,7 @@ public class HomePage extends javax.swing.JFrame {
         searchUserLabel = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Homepage - Sunset Hotel");
+        setTitle("Sunset Hotel");
         setMinimumSize(new java.awt.Dimension(900, 720));
         setName("homePage"); // NOI18N
         setSize(new java.awt.Dimension(900, 720));
@@ -449,7 +439,7 @@ public class HomePage extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        guestTableScroll1.setViewportView(reservationsTable);
+        reservationTableScroll.setViewportView(reservationsTable);
 
         addReservationButton.setText("New");
         addReservationButton.addActionListener(new java.awt.event.ActionListener() {
@@ -484,35 +474,36 @@ public class HomePage extends javax.swing.JFrame {
         reservationAreaLayout.setHorizontalGroup(
             reservationAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(reservationAreaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(searchReservationLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(reservationAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(reservationAreaLayout.createSequentialGroup()
-                        .addGap(6, 6, 6)
-                        .addComponent(guestTableScroll1, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(reservationAreaLayout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addComponent(searchReservationLabel)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(addReservationButton)
                         .addGap(89, 89, 89)
                         .addComponent(editReservationButton)
                         .addGap(100, 100, 100)
                         .addComponent(deleteReservationButton))
                     .addGroup(reservationAreaLayout.createSequentialGroup()
-                        .addGap(141, 141, 141)
                         .addComponent(jtfSearchReservation, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbSearchReservation))
-                    .addGroup(reservationAreaLayout.createSequentialGroup()
-                        .addGap(236, 236, 236)
-                        .addComponent(reservationTitleLabel)))
-                .addGap(16, 16, 16))
+                        .addComponent(jbSearchReservation)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(reservationAreaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(reservationTitleLabel)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reservationAreaLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(reservationTableScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 632, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         reservationAreaLayout.setVerticalGroup(
             reservationAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, reservationAreaLayout.createSequentialGroup()
-                .addGap(28, 28, 28)
+                .addGap(29, 29, 29)
                 .addComponent(reservationTitleLabel)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 58, Short.MAX_VALUE)
                 .addGroup(reservationAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.CENTER)
                     .addComponent(addReservationButton)
                     .addComponent(editReservationButton)
@@ -523,8 +514,8 @@ public class HomePage extends javax.swing.JFrame {
                     .addComponent(jbSearchReservation)
                     .addComponent(searchReservationLabel))
                 .addGap(41, 41, 41)
-                .addComponent(guestTableScroll1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(62, 62, 62))
+                .addComponent(reservationTableScroll, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(62, Short.MAX_VALUE))
         );
 
         backgroundArea.add(reservationArea, "guestArea");
@@ -643,14 +634,14 @@ public class HomePage extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Name", "E-mail", "CPF", "Birth date", "Administrator"
+                "Acess Code", "Name", "E-mail", "CPF", "Birth date", "Administrator"
             }
         ) {
             Class[] types = new Class [] {
-                java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.Object.class
             };
             boolean[] canEdit = new boolean [] {
-                false, false, false, false, true
+                false, false, false, false, false, false
             };
 
             public Class getColumnClass(int columnIndex) {
@@ -700,23 +691,24 @@ public class HomePage extends javax.swing.JFrame {
                     .addGroup(adminAreaLayout.createSequentialGroup()
                         .addGap(6, 6, 6)
                         .addComponent(adminTableScroll, javax.swing.GroupLayout.PREFERRED_SIZE, 622, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(adminAreaLayout.createSequentialGroup()
-                        .addGap(141, 141, 141)
-                        .addComponent(jtfUserReservation, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jbUserReservation))
-                    .addGroup(adminAreaLayout.createSequentialGroup()
-                        .addGap(98, 98, 98)
-                        .addGroup(adminAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(userTitleLabel)
-                            .addGroup(adminAreaLayout.createSequentialGroup()
-                                .addComponent(searchUserLabel)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(addUserButton)
-                                .addGap(89, 89, 89)
-                                .addComponent(editUserButton)))
-                        .addGap(100, 100, 100)
-                        .addComponent(deleteUserButton)))
+                    .addGroup(adminAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, adminAreaLayout.createSequentialGroup()
+                            .addGap(98, 98, 98)
+                            .addGroup(adminAreaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                .addComponent(userTitleLabel)
+                                .addGroup(adminAreaLayout.createSequentialGroup()
+                                    .addComponent(searchUserLabel)
+                                    .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                    .addComponent(addUserButton)
+                                    .addGap(89, 89, 89)
+                                    .addComponent(editUserButton)))
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(deleteUserButton))
+                        .addGroup(javax.swing.GroupLayout.Alignment.LEADING, adminAreaLayout.createSequentialGroup()
+                            .addGap(141, 141, 141)
+                            .addComponent(jtfUserReservation, javax.swing.GroupLayout.PREFERRED_SIZE, 285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                            .addComponent(jbUserReservation))))
                 .addGap(16, 16, 16))
         );
         adminAreaLayout.setVerticalGroup(
@@ -757,6 +749,7 @@ public class HomePage extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jbRoomsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbRoomsActionPerformed
@@ -814,6 +807,7 @@ public class HomePage extends javax.swing.JFrame {
         
         for (User user : users) {
             Object[] rowData = {
+                user.getAccessCode(),
                 user.getUserName(),
                 user.getEmail(),
                 user.getCpf(),
@@ -855,7 +849,6 @@ public class HomePage extends javax.swing.JFrame {
         DefaultTableModel guestTableModel = (DefaultTableModel) this.guestTable.getModel();
 
         if (this.guestTable.getSelectedRowCount() == 1) {
-            GuestDao guestDao = new GuestDao(dbConnection);
             String guestCPF = guestTableModel.getValueAt(this.guestTable.getSelectedRow(), 2).toString();
 
             Guest guest = guestDao.searchGuestByCpf(guestCPF);
@@ -863,6 +856,8 @@ public class HomePage extends javax.swing.JFrame {
             guestDao.deleteGuest(guest);
             dbConnection.getTransaction().begin();
             dbConnection.getTransaction().commit();
+            
+            guestTableModel.removeRow(guestTable.getSelectedRow());
         } else {
             JOptionPane.showMessageDialog(this, "Select one row to delete.");
         }
@@ -870,8 +865,8 @@ public class HomePage extends javax.swing.JFrame {
 
     private void editGuestButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editGuestButtonActionPerformed
         DefaultTableModel guestTableModel = (DefaultTableModel) this.guestTable.getModel();
+        
         if (this.guestTable.getSelectedRowCount() == 1) {
-            GuestDao guestDao = new GuestDao(dbConnection);
             String guestCPF = guestTableModel.getValueAt(this.guestTable.getSelectedRow(), 2).toString();
 
             Guest guest = guestDao.searchGuestByCpf(guestCPF);
@@ -884,15 +879,39 @@ public class HomePage extends javax.swing.JFrame {
     }//GEN-LAST:event_editGuestButtonActionPerformed
 
     private void addReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addReservationButtonActionPerformed
-        // TODO add your handling code here:
+        NewReservationWindow addReservationWindow = new NewReservationWindow();
+        showPopupWindow(addReservationWindow, addReservationButton);
     }//GEN-LAST:event_addReservationButtonActionPerformed
 
     private void editReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editReservationButtonActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel reservationTableModel = (DefaultTableModel) this.reservationsTable.getModel();
+        
+        if (this.reservationsTable.getSelectedRowCount() == 1) {
+            Guest guest = guestDao.searchGuestByName(reservationTableModel.getValueAt(reservationsTable.getSelectedRow(), 0).toString());
+
+            EditReservationWindow addReservationWindow = new EditReservationWindow(guest);
+            showPopupWindow(addReservationWindow, editReservationButton);
+        } else {
+            JOptionPane.showMessageDialog(this, "Select one row to edit.");
+        }
     }//GEN-LAST:event_editReservationButtonActionPerformed
 
     private void deleteReservationButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteReservationButtonActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel reservationTableModel = (DefaultTableModel) this.reservationsTable.getModel();
+        
+        if (this.reservationsTable.getSelectedRowCount() == 1) {
+            Guest guest = guestDao.searchGuestByName(reservationTableModel.getValueAt(reservationsTable.getSelectedRow(), 0).toString());
+            Reservation reservation = reservationDao.searchReservationsByGuest(guest).get(0);
+            
+            reservationDao.cancelReservation(reservation);
+
+            dbConnection.getTransaction().begin();
+            dbConnection.getTransaction().commit();
+            
+            reservationTableModel.removeRow(reservationsTable.getSelectedRow());
+        } else {
+            JOptionPane.showMessageDialog(this, "Select one row to delete.");
+        }
     }//GEN-LAST:event_deleteReservationButtonActionPerformed
 
     private void addRoomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRoomButtonActionPerformed
@@ -902,6 +921,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void editRoomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editRoomButtonActionPerformed
         DefaultTableModel roomTableModel = (DefaultTableModel) this.roomsTable.getModel();
+        
         if (this.roomsTable.getSelectedRowCount() == 1) {
             String roomNumber = roomTableModel.getValueAt(roomsTable.getSelectedRow(), 0).toString();
             Room room = roomDao.searchByRoomNumber(Integer.valueOf(roomNumber));
@@ -915,6 +935,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void deleteRoomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteRoomButtonActionPerformed
         DefaultTableModel roomTableModel = (DefaultTableModel) this.roomsTable.getModel();
+        
         if (this.roomsTable.getSelectedRowCount() == 1) {
             String roomNumber = roomTableModel.getValueAt(roomsTable.getSelectedRow(), 0).toString();
             Room room = roomDao.searchByRoomNumber(Integer.valueOf(roomNumber));
@@ -922,21 +943,47 @@ public class HomePage extends javax.swing.JFrame {
             roomDao.deleteRoom(room);
             dbConnection.getTransaction().begin();
             dbConnection.getTransaction().commit();
+            
+            roomTableModel.removeRow(roomsTable.getSelectedRow());
         } else {
             JOptionPane.showMessageDialog(this, "Select one row to delete.");
         }
     }//GEN-LAST:event_deleteRoomButtonActionPerformed
 
     private void addUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addUserButtonActionPerformed
-        // TODO add your handling code here:
+        NewUserWindow addUserWindow = new NewUserWindow();
+        showPopupWindow(addUserWindow, addUserButton);
     }//GEN-LAST:event_addUserButtonActionPerformed
 
     private void editUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_editUserButtonActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel userTableModel = (DefaultTableModel) this.usersTable.getModel();
+        
+        if (this.usersTable.getSelectedRowCount() == 1) {
+            Integer accessCode = (Integer) userTableModel.getValueAt(usersTable.getSelectedRow(), 0);
+            User user = userDao.searchByAcessCode(accessCode);
+
+            EditUserWindow editUserWindow = new EditUserWindow(user);
+            showPopupWindow(editUserWindow, editUserButton);
+        } else {
+            JOptionPane.showMessageDialog(this, "Select one row to edit.");
+        }
     }//GEN-LAST:event_editUserButtonActionPerformed
 
     private void deleteUserButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteUserButtonActionPerformed
-        // TODO add your handling code here:
+        DefaultTableModel userTableModel = (DefaultTableModel) this.usersTable.getModel();
+        
+        if (this.usersTable.getSelectedRowCount() == 1) {
+            Integer accessCode = (Integer) userTableModel.getValueAt(usersTable.getSelectedRow(), 0);
+            User user = userDao.searchByAcessCode(accessCode);
+
+            userDao.deleteUser(user);
+            dbConnection.getTransaction().begin();
+            dbConnection.getTransaction().commit();
+            
+            userTableModel.removeRow(usersTable.getSelectedRow());
+        } else {
+            JOptionPane.showMessageDialog(this, "Select one row to delete.");
+        }
     }//GEN-LAST:event_deleteUserButtonActionPerformed
 
     public void enableGuestArea(boolean enabled){
@@ -948,10 +995,10 @@ public class HomePage extends javax.swing.JFrame {
             enableReservationArea(!enabled);
         } else if (!jbAdmin.isEnabled()) {
             jbAdmin.setEnabled(true);
-            //jbAdmin.setVisible(!enabled);
+            enableAdminArea(!enabled);
         } else if (!jbRooms.isEnabled()) {
             jbRooms.setEnabled(true);
-            //jbRooms.setVisible(!enabled);
+            enableRoomArea(!enabled);
         }
     }
     
@@ -1068,7 +1115,6 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JButton editUserButton;
     private javax.swing.JTable guestTable;
     private javax.swing.JScrollPane guestTableScroll;
-    private javax.swing.JScrollPane guestTableScroll1;
     private javax.swing.JLabel guestTitleLabel;
     private javax.swing.JPanel guestsArea;
     private javax.swing.JPanel homePagePanel;
@@ -1098,6 +1144,7 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JTextField jtfUserReservation;
     private javax.swing.JButton newGuestButton;
     private javax.swing.JPanel reservationArea;
+    private javax.swing.JScrollPane reservationTableScroll;
     private javax.swing.JLabel reservationTitleLabel;
     private javax.swing.JTable reservationsTable;
     private javax.swing.JScrollPane roomTableScroll;

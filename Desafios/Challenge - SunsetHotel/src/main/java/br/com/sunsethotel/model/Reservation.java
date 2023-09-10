@@ -31,10 +31,11 @@ public class Reservation implements Serializable {
     public Reservation() {
     }
 
-    public Reservation(Guest guest, Room roomNumber, LocalDate reservationDate, LocalDate expirationDate, String paymentMethod) {
+    public Reservation(Guest guest, Room roomNumber, LocalDate reservationDate, LocalDate expirationDate, BigDecimal reservationValue, String paymentMethod) {
         this.roomNumber = roomNumber;
         this.reservationDate = reservationDate;
         this.expirationDate = expirationDate;
+        this.reservationValue = reservationValue;
         this.paymentMethod = paymentMethod;
         this.guestName = guest;
     }

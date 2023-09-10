@@ -4,7 +4,6 @@ import br.com.sunsethotel.dao.GuestDao;
 import br.com.sunsethotel.model.Guest;
 
 import javax.persistence.EntityManager;
-import java.time.LocalDate;
 
 public class GuestDaoTest {
     public static void main(String[] args) {
@@ -27,7 +26,7 @@ public class GuestDaoTest {
             System.out.println(guests.getGuestName());
         }
 
-        for (Guest guests : guestDao.searchGuestByName("Fernado")) {
+        for (Guest guests : guestDao.searchAllGuestByName("Fernado")) {
             System.out.println(guests.getGuestName());
         }
 

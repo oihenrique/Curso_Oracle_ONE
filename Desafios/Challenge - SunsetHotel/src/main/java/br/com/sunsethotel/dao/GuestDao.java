@@ -59,13 +59,23 @@ public class GuestDao {
         }
     }
 
-    public List<Guest> searchGuestByName(String name) {
+    public List<Guest> searchAllGuestByName(String name) {
         String selectName = "SELECT g FROM Guest g WHERE g.guestName LIKE :guestName";
 
         try {
             return dbConnection.createQuery(selectName, Guest.class).setParameter("guestName", "%" + name + "%").getResultList();
         } catch (NoResultException e) {
             return Collections.emptyList();
+        }
+    }
+    
+    public Guest searchGuestByName(String name) {
+        String selectName = "SELECT g FROM Guest g WHERE g.guestName = :guestName";
+
+        try {
+            return dbConnection.createQuery(selectName, Guest.class).setParameter("guestName", name).getSingleResult();
+        } catch (NoResultException e) {
+            return null;
         }
     }
 

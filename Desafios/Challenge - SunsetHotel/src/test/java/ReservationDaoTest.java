@@ -5,6 +5,7 @@ import br.com.sunsethotel.dao.RoomDao;
 import br.com.sunsethotel.model.Guest;
 import br.com.sunsethotel.model.Reservation;
 import br.com.sunsethotel.model.Room;
+import java.math.BigDecimal;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
@@ -21,8 +22,8 @@ public class ReservationDaoTest {
         Guest guest = new GuestDao(em).searchGuestByCpf("222-222-222-00");
         Guest guest1 = new GuestDao(em).searchGuestByCpf("222-222-222-02");
 
-        Reservation reservation = new Reservation(guest, room, LocalDate.of(2023, 8, 26), LocalDate.of(2023, 8, 28), "Cartão");
-        Reservation reservation1 = new Reservation(guest1, room1, LocalDate.of(2023, 8, 26), LocalDate.of(2023, 8, 28), "Cartão");
+        Reservation reservation = new Reservation(guest, room, LocalDate.of(2023, 8, 26), LocalDate.of(2023, 8, 28), new BigDecimal(200), "Cartão");
+        Reservation reservation1 = new Reservation(guest1, room1, LocalDate.of(2023, 8, 26), LocalDate.of(2023, 8, 28), new BigDecimal(200), "Cartão");
 
         reservationDao.registerReservation(reservation);
         reservationDao.registerReservation(reservation1);

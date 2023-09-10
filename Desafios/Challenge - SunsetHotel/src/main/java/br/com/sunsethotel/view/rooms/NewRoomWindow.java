@@ -16,7 +16,7 @@ import javax.swing.JOptionPane;
  */
 public class NewRoomWindow extends javax.swing.JFrame {
 
-    EntityManager dbConnection;
+    private final EntityManager dbConnection;
     private RoomDao roomDao;
     private Integer roomNumber;
     private String roomType;
@@ -49,7 +49,7 @@ public class NewRoomWindow extends javax.swing.JFrame {
         jcbxRoomAvailable = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("New guest");
+        setTitle("New room");
         setBackground(new java.awt.Color(246, 246, 246));
         setMinimumSize(new java.awt.Dimension(400, 265));
         setName("New guest"); // NOI18N

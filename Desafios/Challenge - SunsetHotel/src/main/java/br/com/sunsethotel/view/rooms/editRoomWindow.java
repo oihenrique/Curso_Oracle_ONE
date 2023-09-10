@@ -15,7 +15,7 @@ import javax.persistence.EntityManager;
  */
 public class EditRoomWindow extends javax.swing.JFrame {
 
-    EntityManager dbConnection;
+    private EntityManager dbConnection;
     private RoomDao roomDao;
     private Integer roomNumber;
     private String roomType;
@@ -53,7 +53,7 @@ public class EditRoomWindow extends javax.swing.JFrame {
         jcbxRoomAvailable = new javax.swing.JCheckBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        setTitle("New guest");
+        setTitle("Edit room");
         setBackground(new java.awt.Color(246, 246, 246));
         setMinimumSize(new java.awt.Dimension(400, 265));
         setName("New guest"); // NOI18N

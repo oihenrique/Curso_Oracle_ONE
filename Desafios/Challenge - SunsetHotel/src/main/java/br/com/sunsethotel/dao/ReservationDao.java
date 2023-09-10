@@ -29,9 +29,6 @@ public class ReservationDao {
             Guest guest = reservation.getGuest();
 
             guest.addReservation(reservation);
-
-            BigDecimal reservationValue = calculateReservationValue(reservation.getReservationDate(), reservation.getExpirationDate());
-            reservation.setReservationValue(reservationValue);
         }
     }
 
@@ -99,7 +96,7 @@ public class ReservationDao {
             return Collections.emptyList();
         }
     }
-
+   
     public BigDecimal calculateReservationValue(LocalDate reservationDate, LocalDate expirationDate) {
         long daysDifference = ChronoUnit.DAYS.between(reservationDate, expirationDate);
 

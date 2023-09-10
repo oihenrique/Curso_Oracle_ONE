@@ -15,7 +15,7 @@ import javax.persistence.EntityManager;
  */
 public class NewGuestWindow extends javax.swing.JFrame {
 
-    EntityManager dbConnection;
+    private final EntityManager dbConnection;
 
     /**
      * Creates new form NewGuestWindow
@@ -89,13 +89,69 @@ public class NewGuestWindow extends javax.swing.JFrame {
 
         javax.swing.GroupLayout addGuestFormLayout = new javax.swing.GroupLayout(addGuestForm);
         addGuestForm.setLayout(addGuestFormLayout);
-        addGuestFormLayout.setHorizontalGroup(addGuestFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(addGuestFormLayout.createSequentialGroup().addGap(60, 60, 60).addGroup(addGuestFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(addGuestFormLayout.createSequentialGroup().addGroup(addGuestFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(cpfLabel).addComponent(nationalityLabel).addComponent(phoneNumberLabel).addComponent(birthDateLabel)).addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)).addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addGuestFormLayout.createSequentialGroup().addGroup(addGuestFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING).addComponent(confirmButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE).addComponent(jtfBirthDate, javax.swing.GroupLayout.Alignment.LEADING).addComponent(jtfPhoneNumber, javax.swing.GroupLayout.Alignment.LEADING).addComponent(jtfNationality, javax.swing.GroupLayout.Alignment.LEADING).addComponent(jtfCPF, javax.swing.GroupLayout.Alignment.LEADING).addGroup(javax.swing.GroupLayout.Alignment.LEADING, addGuestFormLayout.createSequentialGroup().addComponent(guestNameLabel).addGap(0, 0, Short.MAX_VALUE)).addComponent(jtfGuestName, javax.swing.GroupLayout.Alignment.LEADING)).addGap(60, 60, 60)))));
-        addGuestFormLayout.setVerticalGroup(addGuestFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addGroup(addGuestFormLayout.createSequentialGroup().addGap(49, 49, 49).addComponent(guestNameLabel).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jtfGuestName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED).addComponent(cpfLabel).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jtfCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED).addComponent(nationalityLabel).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jtfNationality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED).addComponent(phoneNumberLabel).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jtfPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED).addComponent(birthDateLabel).addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED).addComponent(jtfBirthDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE).addGap(18, 18, 18).addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE).addContainerGap(75, Short.MAX_VALUE)));
+        addGuestFormLayout.setHorizontalGroup(
+            addGuestFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addGuestFormLayout.createSequentialGroup()
+                .addGap(60, 60, 60)
+                .addGroup(addGuestFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(addGuestFormLayout.createSequentialGroup()
+                        .addGroup(addGuestFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(cpfLabel)
+                            .addComponent(nationalityLabel)
+                            .addComponent(phoneNumberLabel)
+                            .addComponent(birthDateLabel))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, addGuestFormLayout.createSequentialGroup()
+                        .addGroup(addGuestFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(confirmButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 280, Short.MAX_VALUE)
+                            .addComponent(jtfBirthDate, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfPhoneNumber, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfNationality, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jtfCPF, javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(javax.swing.GroupLayout.Alignment.LEADING, addGuestFormLayout.createSequentialGroup()
+                                .addComponent(guestNameLabel)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addComponent(jtfGuestName, javax.swing.GroupLayout.Alignment.LEADING))
+                        .addGap(60, 60, 60))))
+        );
+        addGuestFormLayout.setVerticalGroup(
+            addGuestFormLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(addGuestFormLayout.createSequentialGroup()
+                .addGap(49, 49, 49)
+                .addComponent(guestNameLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfGuestName, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(cpfLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfCPF, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(nationalityLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfNationality, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(phoneNumberLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfPhoneNumber, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(birthDateLabel)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jtfBirthDate, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(18, 18, 18)
+                .addComponent(confirmButton, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(75, Short.MAX_VALUE))
+        );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(addGuestForm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE));
-        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING).addComponent(addGuestForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE));
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(addGuestForm, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(addGuestForm, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
 
         pack();
         setLocationRelativeTo(null);

@@ -6,10 +6,6 @@ package br.com.sunsethotel.view;
 
 import br.com.sunsethotel.Util.JPAUtil;
 import br.com.sunsethotel.dao.UserDao;
-import br.com.sunsethotel.model.User;
-import java.awt.Dimension;
-import java.awt.Toolkit;
-import java.util.List;
 import javax.persistence.EntityManager;
 
 /**
@@ -22,14 +18,6 @@ public class LoginPage extends javax.swing.JFrame {
 
     public LoginPage() {
         this.dbConnection = JPAUtil.getEntityManager();
-        Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-
-        Dimension frameSize = this.getSize();
-
-        int x = (screenSize.width - frameSize.width) / 4;
-        int y = (screenSize.height - frameSize.height) / 6;
-
-        this.setLocation(x, y);
         initComponents();
     }
 
@@ -56,7 +44,6 @@ public class LoginPage extends javax.swing.JFrame {
         setFont(new java.awt.Font("Arial", 0, 12)); // NOI18N
         setMinimumSize(new java.awt.Dimension(900, 720));
         setName("LoginPage"); // NOI18N
-        setPreferredSize(new java.awt.Dimension(900, 720));
         setSize(new java.awt.Dimension(900, 720));
 
         LoginUI.setBackground(new java.awt.Color(250, 250, 250));
@@ -204,6 +191,9 @@ public class LoginPage extends javax.swing.JFrame {
                 .addComponent(creditsLabel)
                 .addGap(25, 25, 25))
         );
+
+        pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void jtfAcessCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfAcessCodeActionPerformed
@@ -217,7 +207,7 @@ public class LoginPage extends javax.swing.JFrame {
     private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
         UserDao userDao = new UserDao(dbConnection);
         
-        Integer accessCode = Integer.parseInt(jtfAcessCode.getText());
+        Integer accessCode = Integer.valueOf(jtfAcessCode.getText());
         char[] passwordChar = jpfPassword.getPassword();
         String password = new String(passwordChar);
 
