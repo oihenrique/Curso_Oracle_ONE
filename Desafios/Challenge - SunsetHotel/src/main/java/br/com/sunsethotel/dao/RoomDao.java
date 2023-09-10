@@ -57,7 +57,7 @@ public class RoomDao {
             return Collections.emptyList();
         }
     }
-    
+
     public List<Room> listAvailableRooms() {
         String selectAllRooms = "SELECT r FROM Room r WHERE r.roomAvailability = 1";
         try {

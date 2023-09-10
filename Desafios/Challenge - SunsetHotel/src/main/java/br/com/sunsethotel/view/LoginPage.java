@@ -6,10 +6,11 @@ package br.com.sunsethotel.view;
 
 import br.com.sunsethotel.Util.JPAUtil;
 import br.com.sunsethotel.dao.UserDao;
+
 import javax.persistence.EntityManager;
+import javax.swing.*;
 
 /**
- *
  * @author Henrique
  */
 public class LoginPage extends javax.swing.JFrame {
@@ -67,20 +68,10 @@ public class LoginPage extends javax.swing.JFrame {
         jtfAcessCode.setHighlighter(null);
         jtfAcessCode.setMinimumSize(new java.awt.Dimension(64, 30));
         jtfAcessCode.setPreferredSize(new java.awt.Dimension(64, 30));
-        jtfAcessCode.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jtfAcessCodeActionPerformed(evt);
-            }
-        });
 
         jpfPassword.setHighlighter(null);
         jpfPassword.setMinimumSize(new java.awt.Dimension(64, 30));
         jpfPassword.setPreferredSize(new java.awt.Dimension(64, 30));
-        jpfPassword.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jpfPasswordActionPerformed(evt);
-            }
-        });
 
         labelAcessCode.setBackground(new java.awt.Color(105, 105, 105));
         labelAcessCode.setForeground(new java.awt.Color(105, 105, 105));
@@ -105,63 +96,59 @@ public class LoginPage extends javax.swing.JFrame {
         signInButton.setMaximumSize(new java.awt.Dimension(67, 40));
         signInButton.setMinimumSize(new java.awt.Dimension(67, 40));
         signInButton.setPreferredSize(new java.awt.Dimension(67, 40));
-        signInButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                signInButtonActionPerformed(evt);
-            }
-        });
+        signInButton.addActionListener(this::signInButtonActionPerformed);
 
         jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/logo-64px.png"))); // NOI18N
 
         javax.swing.GroupLayout LoginUILayout = new javax.swing.GroupLayout(LoginUI);
         LoginUI.setLayout(LoginUILayout);
         LoginUILayout.setHorizontalGroup(
-            LoginUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LoginUILayout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(LoginUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(LoginUILayout.createSequentialGroup()
-                        .addGroup(LoginUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginUILayout.createSequentialGroup()
-                                .addGap(0, 0, Short.MAX_VALUE)
-                                .addComponent(recoverPasswordButton))
-                            .addComponent(jpfPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jtfAcessCode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelWelcomeLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(labelPassword)
-                            .addComponent(labelAcessCode)
-                            .addComponent(signInButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                    .addGroup(LoginUILayout.createSequentialGroup()
-                        .addComponent(labelLoginTitle)
-                        .addGap(155, 155, 155))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginUILayout.createSequentialGroup()
-                .addGap(178, 178, 178)
-                .addComponent(jLabel1)
-                .addGap(178, 178, 178))
+                LoginUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(LoginUILayout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(LoginUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addGroup(LoginUILayout.createSequentialGroup()
+                                                .addGroup(LoginUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginUILayout.createSequentialGroup()
+                                                                .addGap(0, 0, Short.MAX_VALUE)
+                                                                .addComponent(recoverPasswordButton))
+                                                        .addComponent(jpfPassword, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(jtfAcessCode, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(labelWelcomeLogin, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                                        .addComponent(labelPassword)
+                                                        .addComponent(labelAcessCode)
+                                                        .addComponent(signInButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                        .addGroup(LoginUILayout.createSequentialGroup()
+                                                .addComponent(labelLoginTitle)
+                                                .addGap(155, 155, 155))))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, LoginUILayout.createSequentialGroup()
+                                .addGap(178, 178, 178)
+                                .addComponent(jLabel1)
+                                .addGap(178, 178, 178))
         );
         LoginUILayout.setVerticalGroup(
-            LoginUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(LoginUILayout.createSequentialGroup()
-                .addGap(37, 37, 37)
-                .addComponent(jLabel1)
-                .addGap(37, 37, 37)
-                .addComponent(labelLoginTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(labelWelcomeLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
-                .addGap(26, 26, 26)
-                .addComponent(labelAcessCode)
-                .addGap(5, 5, 5)
-                .addComponent(jtfAcessCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(labelPassword)
-                .addGap(5, 5, 5)
-                .addComponent(jpfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(5, 5, 5)
-                .addComponent(recoverPasswordButton)
-                .addGap(20, 20, 20)
-                .addComponent(signInButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(80, Short.MAX_VALUE))
+                LoginUILayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(LoginUILayout.createSequentialGroup()
+                                .addGap(37, 37, 37)
+                                .addComponent(jLabel1)
+                                .addGap(37, 37, 37)
+                                .addComponent(labelLoginTitle, javax.swing.GroupLayout.DEFAULT_SIZE, 27, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(labelWelcomeLogin, javax.swing.GroupLayout.DEFAULT_SIZE, 20, Short.MAX_VALUE)
+                                .addGap(26, 26, 26)
+                                .addComponent(labelAcessCode)
+                                .addGap(5, 5, 5)
+                                .addComponent(jtfAcessCode, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(labelPassword)
+                                .addGap(5, 5, 5)
+                                .addComponent(jpfPassword, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(5, 5, 5)
+                                .addComponent(recoverPasswordButton)
+                                .addGap(20, 20, 20)
+                                .addComponent(signInButton, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addContainerGap(80, Short.MAX_VALUE))
         );
 
         creditsLabel.setFont(new java.awt.Font("Segoe UI", 1, 12)); // NOI18N
@@ -172,41 +159,33 @@ public class LoginPage extends javax.swing.JFrame {
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(346, Short.MAX_VALUE)
-                .addComponent(creditsLabel)
-                .addContainerGap(346, Short.MAX_VALUE))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(LoginUI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(238, 238, 238))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap(346, Short.MAX_VALUE)
+                                .addComponent(creditsLabel)
+                                .addContainerGap(346, Short.MAX_VALUE))
+                        .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(LoginUI, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(238, 238, 238))
         );
         layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap(93, Short.MAX_VALUE)
-                .addComponent(LoginUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(86, 86, 86)
-                .addComponent(creditsLabel)
-                .addGap(25, 25, 25))
+                layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                        .addGroup(layout.createSequentialGroup()
+                                .addContainerGap(93, Short.MAX_VALUE)
+                                .addComponent(LoginUI, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(86, 86, 86)
+                                .addComponent(creditsLabel)
+                                .addGap(25, 25, 25))
         );
 
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jtfAcessCodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jtfAcessCodeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jtfAcessCodeActionPerformed
-
-    private void jpfPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jpfPasswordActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jpfPasswordActionPerformed
-
     private void signInButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_signInButtonActionPerformed
         UserDao userDao = new UserDao(dbConnection);
-        
+
         Integer accessCode = Integer.valueOf(jtfAcessCode.getText());
         char[] passwordChar = jpfPassword.getPassword();
         String password = new String(passwordChar);
@@ -221,12 +200,7 @@ public class LoginPage extends javax.swing.JFrame {
 
     }//GEN-LAST:event_signInButtonActionPerformed
 
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+    public static void main(String[] args) {
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -234,16 +208,10 @@ public class LoginPage extends javax.swing.JFrame {
                     break;
                 }
             }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
+        } catch (ClassNotFoundException | UnsupportedLookAndFeelException | IllegalAccessException |
+                 InstantiationException ex) {
             java.util.logging.Logger.getLogger(LoginPage.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
-        //</editor-fold>
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {

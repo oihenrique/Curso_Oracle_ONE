@@ -2,6 +2,7 @@ import br.com.sunsethotel.Util.JPAUtil;
 import br.com.sunsethotel.model.Guest;
 import br.com.sunsethotel.model.Reservation;
 import br.com.sunsethotel.model.Room;
+
 import java.math.BigDecimal;
 
 import javax.persistence.EntityManager;

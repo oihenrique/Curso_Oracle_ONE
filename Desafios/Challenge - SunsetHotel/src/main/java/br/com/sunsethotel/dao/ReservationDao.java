@@ -96,7 +96,7 @@ public class ReservationDao {
             return Collections.emptyList();
         }
     }
-   
+
     public BigDecimal calculateReservationValue(LocalDate reservationDate, LocalDate expirationDate) {
         long daysDifference = ChronoUnit.DAYS.between(reservationDate, expirationDate);
 

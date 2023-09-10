@@ -68,7 +68,7 @@ public class GuestDao {
             return Collections.emptyList();
         }
     }
-    
+
     public Guest searchGuestByName(String name) {
         String selectName = "SELECT g FROM Guest g WHERE g.guestName = :guestName";
 
