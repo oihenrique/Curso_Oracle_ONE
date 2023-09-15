@@ -1,0 +1,5 @@
+ALTER TABLE medicos
+ADD COLUMN ativo tinyint NOT NULL DEFAULT 1;
+
+ALTER TABLE pacientes
+ADD COLUMN ativo tinyint NOT NULL DEFAULT 1;
