@@ -4,6 +4,12 @@ Este projeto faz parte do curso da Oracle ONE, ministrado pela Alura. 🤘 #chal
 
 Foi desenvolvido um conversor de moedas e um conversor de temperaturas, ambos desenvolvidos em `Java`, utilizando `java.swing` para criar uma interface onde o usuário pode converter valores entre diferentes moedas ou temperaturas de forma simples.
 
+<br>
+<div style="text-align:center">
+    <img src="screenshots/runningProject.gif" alt="running project">
+</div>
+
+
 ## Funcionalidades
 
 - Conversão de valores entre as seguintes moedas:
@@ -30,7 +36,3 @@ Foi desenvolvido um conversor de moedas e um conversor de temperaturas, ambos de
 - Execute a classe **Main** para iniciar a aplicação;
 - Uma interface gráfica será exibida, permitindo que você selecione o tipo de conversão desejada e insira o valor a ser convertido.
 - O resultado da conversão será exibido na interface.
-
-# Documentação
-
-Para acessar a documentação do projeto, execute o arquivo `index.html` dentro da pasta `doc` após clonar o projeto.

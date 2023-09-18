@@ -3,12 +3,13 @@
 Este projeto faz parte do curso da Oracle ONE, e foi ministrado pela Alura.
 🤘 #challengeonedecodificador5
 
-
 O projeto consiste em um site que permite ao usuário criptografar e descriptografar mensagens. A criptografia foi feita através de um algoritmo que troca as vogais por outros conjuntos de letras, que podem ser chamadas de chaves, ou seja, **para cada vogal, há uma chave**. A descriptografia é feita utilizando a mesma chave utilizada na criptografia.
 
 ### Visualização
 
 Para utilizar o site, basta [clicar aqui](https://oihenrique.github.io/Decodificador-de-texto/).
+
+![](assets/screenshots/runningProjectDecodificador.gif)
 
 ## Como utilizar
 
