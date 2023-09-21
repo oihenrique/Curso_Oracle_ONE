@@ -1,4 +1,4 @@
-package com.musique.forum.models;
+package com.musique.forum.domain;
 
 import jakarta.persistence.*;
 import lombok.*;
@@ -9,21 +9,18 @@ import java.util.List;
 
 @Entity
 @Table(name = "topics")
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@EqualsAndHashCode(of = "id")
+@Getter @Setter
+@AllArgsConstructor @NoArgsConstructor
 public class Topic {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private String tittle;
+    private String title;
     private String message;
     private LocalDateTime creationDate = LocalDateTime.now();
-    @Enumerated(EnumType.STRING)
     private TopicStatus status = TopicStatus.OPENED_NOT_REPLIED;
+    @ManyToOne
     private User author;
+    @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
     private List<Reply> replies = new ArrayList<>();
 }
