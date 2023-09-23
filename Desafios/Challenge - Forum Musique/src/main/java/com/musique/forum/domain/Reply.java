@@ -1,5 +1,6 @@
 package com.musique.forum.domain;
 
+import com.musique.forum.domain.user.User;
 import jakarta.persistence.*;
 import lombok.*;
 
