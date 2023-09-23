@@ -1,4 +1,4 @@
-package com.musique.forum.domain;
+package com.musique.forum.domain.topic;
 
 public enum TopicStatus {
     OPENED_NOT_REPLIED,

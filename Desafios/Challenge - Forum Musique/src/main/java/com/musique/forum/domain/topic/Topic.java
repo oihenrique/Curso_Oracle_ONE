@@ -1,5 +1,6 @@
-package com.musique.forum.domain;
+package com.musique.forum.domain.topic;
 
+import com.musique.forum.domain.reply.Reply;
 import com.musique.forum.domain.user.User;
 import jakarta.persistence.*;
 import lombok.*;
@@ -24,4 +25,22 @@ public class Topic {
     private User author;
     @OneToMany(mappedBy = "topic", cascade = CascadeType.ALL)
     private List<Reply> replies = new ArrayList<>();
+
+    public Topic(TopicDTO topicDTO, User author) {
+        this.title = topicDTO.title();
+        this.message = topicDTO.message();
+        this.author = author;
+    }
+
+    public void updatePost(UpdateTopicDTO update) {
+        if (update.title() != null) {
+            this.title = update.title();
+        }
+        if (update.message() != null) {
+            this.message = update.message();
+        }
+        if (update.status() != null) {
+            this.status = update.status();
+        }
+    }
 }

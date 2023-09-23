@@ -1,5 +1,9 @@
-package com.musique.forum.domain.user;
+package com.musique.forum.controllers;
 
+import com.musique.forum.domain.user.UpdateUserDTO;
+import com.musique.forum.domain.user.User;
+import com.musique.forum.domain.user.UserDTO;
+import com.musique.forum.domain.user.UserListDTO;
 import com.musique.forum.repositories.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
