@@ -9,11 +9,14 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "replies")
-@Getter @Setter
-@AllArgsConstructor @NoArgsConstructor
+@Getter
+@Setter
+@AllArgsConstructor
+@NoArgsConstructor
 public class Reply {
 
-    @Id @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String message;
     private LocalDateTime creationDate = LocalDateTime.now();
@@ -23,4 +26,14 @@ public class Reply {
     @ManyToOne
     @JoinColumn(name = "author_id")
     private User author;
+
+    public Reply(ReplyDTO replyDTO) {
+        this.message = replyDTO.message();
+    }
+
+    public void updateReply(UpdateReplyDTO updateReplyDTO) {
+        if (updateReplyDTO.message() != null) {
+            this.message = updateReplyDTO.message();
+        }
+    }
 }

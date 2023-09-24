@@ -24,7 +24,7 @@ public class UsersController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity register(@RequestBody @Valid UserDTO userDTO, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity create(@RequestBody @Valid UserDTO userDTO, UriComponentsBuilder uriBuilder) {
 
         User user = new User(userDTO);
         repository.save(user);
