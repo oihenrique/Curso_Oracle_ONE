@@ -11,6 +11,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -24,9 +25,11 @@ public class UsersController {
 
     @PostMapping
     @Transactional
-    public ResponseEntity create(@RequestBody @Valid UserDTO userDTO, UriComponentsBuilder uriBuilder) {
+    public ResponseEntity register(@RequestBody @Valid UserDTO userDTO, UriComponentsBuilder uriBuilder) {
+        if (repository.findByLogin(userDTO.login()) != null) return ResponseEntity.badRequest().build();
 
-        User user = new User(userDTO);
+        String encryptedPassword = new BCryptPasswordEncoder().encode(userDTO.password());
+        User user = new User(userDTO, encryptedPassword);
         repository.save(user);
 
         var uri = uriBuilder.path("/user/{id}").buildAndExpand(user.getId()).toUri();

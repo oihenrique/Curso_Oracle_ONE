@@ -1,18 +1,16 @@
 package com.musique.forum.controllers;
 
-import com.musique.forum.domain.reply.Reply;
 import com.musique.forum.domain.topic.Topic;
 import com.musique.forum.domain.topic.TopicDTO;
 import com.musique.forum.domain.topic.TopicListDTO;
 import com.musique.forum.domain.topic.UpdateTopicDTO;
-import com.musique.forum.domain.user.User;
-import com.musique.forum.domain.user.UserListDTO;
 import com.musique.forum.repositories.TopicRepository;
 import com.musique.forum.repositories.UserRepository;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
 import org.springframework.http.ResponseEntity;
 import org.springframework.transaction.annotation.Transactional;
@@ -42,7 +40,7 @@ public class TopicsController {
     }
 
     @GetMapping
-    public ResponseEntity<Page<TopicListDTO>> list(@PageableDefault(sort = "creationDate") Pageable paginate) {
+    public ResponseEntity<Page<TopicListDTO>> list(@PageableDefault(sort = "creationDate", direction = Sort.Direction.ASC) Pageable paginate) {
 
         Page<TopicListDTO> topicList = repository.findAll(paginate).map(TopicListDTO::new);
 
