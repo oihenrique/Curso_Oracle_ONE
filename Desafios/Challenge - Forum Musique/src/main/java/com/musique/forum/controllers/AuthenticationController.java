@@ -3,6 +3,7 @@ package com.musique.forum.controllers;
 import com.musique.forum.domain.user.AuthenticationDTO;
 import com.musique.forum.domain.user.LoginResponseDTO;
 import com.musique.forum.domain.user.User;
+import com.musique.forum.services.AuthorizationService;
 import com.musique.forum.services.TokenService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,20 +20,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("auth")
 public class AuthenticationController {
     @Autowired
-    private AuthenticationManager authenticationManager;
-    @Autowired
-    private TokenService tokenService;
+    private AuthorizationService authorizationService;
 
     @PostMapping("/login")
-    @Transactional
-    public ResponseEntity login(@RequestBody @Valid AuthenticationDTO dados) {
-        System.out.println("tolete");
-        var authenticationToken = new UsernamePasswordAuthenticationToken(dados.login(), dados.password());
-        System.out.println("banana");
-        var authentication = authenticationManager.authenticate(authenticationToken);
-        System.out.println("coco");
-        var tokenJWT = tokenService.generateToken((User) authentication.getPrincipal());
-        System.out.println(tokenJWT);
-        return ResponseEntity.ok(new LoginResponseDTO(tokenJWT));
+    public ResponseEntity<Object> login(@RequestBody @Valid AuthenticationDTO auth){
+        return authorizationService.login(auth);
     }
 }

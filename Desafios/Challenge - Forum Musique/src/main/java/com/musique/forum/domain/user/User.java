@@ -28,6 +28,7 @@ public class User implements UserDetails {
     private String login;
     private String password;
     private Boolean active = true;
+    @Enumerated(EnumType.STRING)
     private UserRoles role;
 
     public User(UserDTO userDTO, String encryptedPassword) {
