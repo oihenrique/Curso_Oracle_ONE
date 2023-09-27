@@ -26,7 +26,7 @@ public class TokenService {
                     .withSubject(usuario.getLogin()) // id do cliente que solicitou o token
                     .withExpiresAt(dataExpiracao()) // expiração do token
                     .sign(algoritmo);
-        } catch (JWTCreationException exception){
+        } catch (JWTCreationException exception) {
             throw new RuntimeException("erro ao gerrar token jwt", exception);
         }
     }
