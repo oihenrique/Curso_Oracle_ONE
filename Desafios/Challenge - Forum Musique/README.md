@@ -1,7 +1,6 @@
 # Desafio API - Forum Musique
 
 ![Java](https://img.shields.io/badge/Java-8%2B-orange) ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3-blue) ![Spring Security](https://img.shields.io/badge/Spring%20Security-6-green) [![LinkedIn](https://img.shields.io/badge/Connect%20on-LinkedIn-blue)](https://www.linkedin.com/in/oihenriquegomes/)
-![GPL License](https://img.shields.io/badge/License-GPL-blue)
 
 ## Table of Contents
 
@@ -15,7 +14,10 @@
 
 ## Introduction
 
-This project aims to implement API concepts, API security, HTTP requests, and user authentication. Therefore, it can be used for studying the application of these concepts through code.
+The idea of the Musique Forum is to be a forum for musicians where free topics related to music can be created and discussed.
+
+This project is part of the Oracle One Next course, provided by Alura, and aims to implement API concepts, API security, HTTP requests, and user authentication. Therefore, it can be used for studying the application of these concepts through code. #challengeoneforumalura5
+
 
 ## Features
 
@@ -48,8 +50,19 @@ This project aims to implement API concepts, API security, HTTP requests, and us
 - `POST /user`: Register a new user.
 - `GET /user`: List all active users.
 - `GET /user/{id}`: Detail information from user selected by id.
-- `PUT /user/{id}`: Update information from user selected by id.
+- `PUT /user`: Update information from user selected by id.
 - `DELETE /user/{id}`: Deactivate information from user selected by id.
+---
+- `POST /topic`: Create a new topic.
+- `PUT /topic`: Update a topic.
+- `DELETE /topic/{id}`: Delete a topic by id.
+- `GET /topic`: List all topics.
+---
+- `POST /reply`: Create a new reply to a topic.
+- `PUT /reply`: Update a reply.
+- `DELETE /reply/{id}`: Delete a reply from a topic.
+- `GET /reply`: List all replies.
+---
 
 - `POST /auth/login`: Obtain a JWT by logging in.
 
