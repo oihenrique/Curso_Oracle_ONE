@@ -1,6 +1,10 @@
 # Reservation management Challenge - Sunset Hotel
 
-![Java](https://img.shields.io/badge/Java-8%2B-orange) ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-3-blue) ![Spring Security](https://img.shields.io/badge/Spring%20Security-6-green) [![LinkedIn](https://img.shields.io/badge/Connect%20on-LinkedIn-blue)](https://www.linkedin.com/in/oihenriquegomes/)
+![Java](https://img.shields.io/badge/Java-8%2B-orange)
+![MySQL](https://img.shields.io/badge/MySQL-Database-blue)
+![Hibernate](https://img.shields.io/badge/Hibernate-Framework-orange)
+![Swing](https://img.shields.io/badge/Java%20Swing-red)
+[![LinkedIn](https://img.shields.io/badge/Connect%20on-LinkedIn-blue)](https://www.linkedin.com/in/oihenriquegomes/)
 
 ## Table of Contents
 
