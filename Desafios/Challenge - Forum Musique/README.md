@@ -70,3 +70,5 @@ This project is part of the Oracle One Next course, provided by Alura, and aims 
 ## Contact
 
 Connect with me on [LinkedIn](https://www.linkedin.com/in/oihenriquegomes/).
+
+![badge](screenshots/badge_desafio_forum.png)

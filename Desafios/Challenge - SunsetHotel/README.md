@@ -41,6 +41,7 @@ The project is part of the Oracle One Next course, provided by Alura, and aims t
 
 
 ## Usage
+- Clone the repository.
 - Configure the database in the files: `persistence.xml` in the "/resources/META-INF" folder and `JPAUtil` inside the "util" folder.
 - Access the "view" folder inside the project package folder.
 - Run the `LoginPage` class to create the tables in the database.
@@ -51,3 +52,5 @@ The project is part of the Oracle One Next course, provided by Alura, and aims t
 ## Contact
 
 Connect with me on [LinkedIn](https://www.linkedin.com/in/oihenriquegomes/).
+
+![badge](screenshots/badge_desafio_hotel.png)

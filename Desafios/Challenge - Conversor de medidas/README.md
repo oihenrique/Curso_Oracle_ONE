@@ -1,38 +1,40 @@
-# Desafio - Conversor de medidas
+# Challenge - Unit Converter
 
-Este projeto faz parte do curso da Oracle ONE, ministrado pela Alura. 🤘 #challengeoneconversorbr5
+This project is part of the Oracle ONE course, provided by Alura. 🤘 #challengeoneconversorbr5
 
-Foi desenvolvido um conversor de moedas e um conversor de temperaturas, ambos desenvolvidos em `Java`, utilizando `java.swing` para criar uma interface onde o usuário pode converter valores entre diferentes moedas ou temperaturas de forma simples.
+We have developed a currency converter and a temperature converter, both implemented in `Java`, using `java.swing` to create an interface where the user can easily convert values between different currencies or temperatures.
 
 <br>
 <div style="text-align:center">
     <img src="screenshots/runningProject.gif" alt="running project">
 </div>
 
+## Features
 
-## Funcionalidades
-
-- Conversão de valores entre as seguintes moedas:
-  - Real (BRL)
-  - Dólar (USD)
+- Conversion of values between the following currencies:
+  - Brazilian Real (BRL)
+  - US Dollar (USD)
   - Euro (EUR)
-  - Libras Esterlinas (GBP)
-  - Peso Argentino (ARS)
-  - Peso Chileno (CLP)
-- Conversão de valores entre as seguintes temperaturas:
+  - British Pound (GBP)
+  - Argentine Peso (ARS)
+  - Chilean Peso (CLP)
+- Conversion of values between the following temperatures:
   - Celsius (°C)
   - Fahrenheit (°F)
   - Kelvin (K)
 
-## Requisitos para executar o código
+## Requirements to Run the Code
 
-- Java 8 ou superior
-- Biblioteca Swing
+- Java 8 or higher
+- Swing library
 
-# Como executar
+# How to Run
 
-- Clone o repositório;
-- Abra o projeto em sua IDE Java;
-- Execute a classe **Main** para iniciar a aplicação;
-- Uma interface gráfica será exibida, permitindo que você selecione o tipo de conversão desejada e insira o valor a ser convertido.
-- O resultado da conversão será exibido na interface.
+- Clone the repository;
+- Open the project in your Java IDE;
+- Execute the **Main** class to start the application;
+- A graphical interface will appear, allowing you to select the desired type of conversion and enter the value to be converted.
+- The conversion result will be displayed on the interface.
+
+
+![badge](screenshots/badge_desafio_conversor.png)
