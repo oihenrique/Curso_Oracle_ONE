@@ -1,27 +1,29 @@
-# Desafio Decoficador de texto
+# Challenge - Text Decoder
 
-Este projeto faz parte do curso da Oracle ONE, e foi ministrado pela Alura.
-🤘 #challengeonedecodificador5
+This project is part of the Oracle ONE course, provided by Alura. 🤘 #challengeonedecodificador5
 
-O projeto consiste em um site que permite ao usuário criptografar e descriptografar mensagens. A criptografia foi feita através de um algoritmo que troca as vogais por outros conjuntos de letras, que podem ser chamadas de chaves, ou seja, **para cada vogal, há uma chave**. A descriptografia é feita utilizando a mesma chave utilizada na criptografia.
+The project consists of a website that allows the user to encrypt and decrypt messages. Encryption is done using an algorithm that replaces vowels with other sets of letters, which can be called keys, meaning **for each vowel, there is a key**. Decryption is performed using the same key used in encryption.
 
-### Visualização
+### Preview
 
-Para utilizar o site, basta [clicar aqui](https://oihenrique.github.io/Decodificador-de-texto/).
+To use the website, just [click here](https://oihenrique.github.io/Decodificador-de-texto/).
 
 ![](assets/screenshots/runningProjectDecodificador.gif)
 
-## Como utilizar
+## How to Use
 
-Na caixa de texto, digite a frase ou palavra que deseja criptografar. Abaixo, há dois botões, um para criptografar o texto e outro para descriptografar.
+In the text box, type the phrase or word you want to encrypt. Below, there are two buttons, one for encrypting the text and another for decrypting.
 
-Observe que é possível adicionar uma palavra criptografada no campo texto e clicar em "descriptografar" também.
+Note that you can also add an encrypted word in the text field and click "decrypt."
 
-Em ambos os casos, o resultado da criptografia, ou descriptografia aparece no canto direito da tela (na versão desktop) ou abaixo dos botões (na versão mobile).
+In both cases, the result of encryption or decryption appears on the right side of the screen (in the desktop version) or below the buttons (in the mobile version).
 
-Além disso, você pode copiar o texto da saída de dados ao clicar no botão "copiar".
+Furthermore, you can copy the output text by clicking the "copy" button.
 
-## Exemplos de uso
+## Usage Examples
 
-Palavra inserida -> gato
-Saída criptografada -> gaitober
+Entered word -> gato<br>
+Encrypted output -> gaitober
+
+
+![badge](assets/screenshots/decodificador_de_texto_badge.png)
