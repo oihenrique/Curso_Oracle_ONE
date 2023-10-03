@@ -91,7 +91,6 @@ public class UserDao {
         try {
             String selectHashedPassword = "SELECT u.userPassword FROM User u WHERE u.accessCode = :accessCode";
             String hashedPassword = dbConnection.createQuery(selectHashedPassword, String.class).setParameter("accessCode", accessCode).getSingleResult();
-            System.out.println(hashedPassword);
             return verifyPassword(password, hashedPassword);
         } catch (Exception e) {
             e.printStackTrace();
